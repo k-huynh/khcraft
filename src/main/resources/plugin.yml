@@ -1,0 +1,5 @@
+name: Khcraft
+version: ${project.version}
+main: org.kh.khcraft.Khcraft
+version: 1.0
+api-version: 1.16
