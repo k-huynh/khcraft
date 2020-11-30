@@ -83,6 +83,13 @@ public final class Khcraft extends JavaPlugin {
         config.addDefault("skills.blocks.NETHER_QUARTZ_ORE", 5);
         config.addDefault("skills.blocks.NETHER_GOLD_ORE", 5);
 
+        // tillable blocks
+        List<String> tillableList = Arrays.asList("DIRT",
+                                                  "GRASS_BLOCK",
+                                                  "GRASS_PATH",
+                                                  "COARSE_DIRT");
+        config.addDefault("skills.tillableList", tillableList);
+
         // silk touch exception blocks
         List<String> silkTouchExceptionList = Arrays.asList("COAL_ORE",
                                                             "DIAMOND_ORE",
@@ -91,7 +98,7 @@ public final class Khcraft extends JavaPlugin {
                                                             "REDSTONE_ORE",
                                                             "NETHER_QUARTZ_ORE",
                                                             "NETHER_GOLD_ORE");
-        config.addDefault("skills.silktouch", silkTouchExceptionList);
+        config.addDefault("skills.silkTouch", silkTouchExceptionList);
 
 
         config.options().copyDefaults(true);
