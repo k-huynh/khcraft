@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.List;
 
 public final class Khcraft extends JavaPlugin {
     FileConfiguration config = getConfig();
@@ -31,8 +33,9 @@ public final class Khcraft extends JavaPlugin {
         // run db setup
         databaseSetup();
 
-        // create listener for hoveritem checking
+        // register listeners
         getServer().getPluginManager().registerEvents(new HoverListener(), this);
+        getServer().getPluginManager().registerEvents(new SkillsListener(this), this);
 
     }
 
@@ -42,21 +45,65 @@ public final class Khcraft extends JavaPlugin {
     }
 
     public void generateConfig() {
-        config.addDefault("dbhost", "");
-        config.addDefault("dbport", "");
-        config.addDefault("dbname", "");
-        config.addDefault("dbuser", "");
-        config.addDefault("dbpass", "");
+        // db config
+        config.addDefault("db.host", "localhost");
+        config.addDefault("db.port", "3306");
+        config.addDefault("db.name", "test");
+        config.addDefault("db.user", "khcraft");
+        // need to update the config yourself to add the pword!
+        config.addDefault("db.pass", "");
+
+        // skills config
+        List<String> skillsList = Arrays.asList("MINING",
+                                                "CHOPPING",
+                                                "DIGGING",
+                                                "FARMING",
+                                                "ATTACKING",
+                                                "FISHING",
+                                                "ARCHERY",
+                                                "GENERAL");
+        config.addDefault("skills.list", skillsList);
+
+        // block exp when mined
+        config.addDefault("skills.blocks.NETHERRACK", 0.5);
+        config.addDefault("skills.blocks.WARPED_NYLIUM", 0.5);
+        config.addDefault("skills.blocks.CRIMSON_NYLIUM", 0.5);
+        // sandstone and its derivatives
+        config.addDefault("skills.blocks.SANDSTONE", 0.5);
+        config.addDefault("skills.blocks.MAGMA_BLOCK", 0.5);
+        // obsidian and crying obsidian
+        config.addDefault("skills.blocks.OBSIDIAN", 5);
+        config.addDefault("skills.blocks.SPAWNER", 25);
+        // ores
+        config.addDefault("skills.blocks.COAL_ORE", 10);
+        config.addDefault("skills.blocks.DIAMOND_ORE", 40);
+        config.addDefault("skills.blocks.EMERALD_ORE", 20);
+        config.addDefault("skills.blocks.LAPIS_ORE", 10);
+        config.addDefault("skills.blocks.REDSTONE_ORE", 5);
+        config.addDefault("skills.blocks.NETHER_QUARTZ_ORE", 5);
+        config.addDefault("skills.blocks.NETHER_GOLD_ORE", 5);
+
+        // silk touch exception blocks
+        List<String> silkTouchExceptionList = Arrays.asList("COAL_ORE",
+                                                            "DIAMOND_ORE",
+                                                            "EMERALD_ORE",
+                                                            "LAPIS_ORE",
+                                                            "REDSTONE_ORE",
+                                                            "NETHER_QUARTZ_ORE",
+                                                            "NETHER_GOLD_ORE");
+        config.addDefault("skills.silktouch", silkTouchExceptionList);
+
+
         config.options().copyDefaults(true);
         saveConfig();
     }
 
     public void databaseConnect() {
-        this.hostname = config.getString("dbhost");
-        this.port = config.getString("dbport");
-        this.username = config.getString("dbuser");
-        this.password = config.getString("dbpass");
-        this.database = config.getString("dbname");
+        this.hostname = config.getString("db.host");
+        this.port = config.getString("db.port");
+        this.username = config.getString("db.user");
+        this.password = config.getString("db.pass");
+        this.database = config.getString("db.name");
 
         try {
             openConnection();
@@ -84,29 +131,21 @@ public final class Khcraft extends JavaPlugin {
             // users table
             String userQuery = "CREATE TABLE IF NOT EXISTS Users("
                     + "Username VARCHAR(45) NOT NULL,"
-                    + "KB DOUBLE DEFAULT 0 NOT NULL,"
+                    + "KB DOUBLE DEFAULT 0,"
                     + "PRIMARY KEY (Username));";
-
-            // skills table
-            String skillsQuery = "CREATE TABLE IF NOT EXISTS Skills("
-                    + "SkillID INT AUTO_INCREMENT NOT NULL,"
-                    + "SkillName VARCHAR(45) NOT NULL,"
-                    + "PRIMARY KEY (SkillID));";
 
             // enchantments table
             String enchantmentsQuery = "CREATE TABLE IF NOT EXISTS Enchantments("
                     + "EnchantmentName VARCHAR(45) NOT NULL,"
-                    + "SkillID INT NOT NULL,"
-                    + "FOREIGN KEY (SkillID) REFERENCES Skills(SkillID),"
+                    + "SkillName VARCHAR(45) NOT NULL,"
                     + "PRIMARY KEY (EnchantmentName));";
 
             // userskills table
             String userSkillsQuery = "CREATE TABLE IF NOT EXISTS UserSkills("
                     + "Username VARCHAR(45) NOT NULL,"
-                    + "SkillID INT NOT NULL,"
-                    + "XP DOUBLE NOT NULL,"
+                    + "SkillName VARCHAR(45) NOT NULL,"
+                    + "XP DOUBLE DEFAULT 0,"
                     + "UserSkillID INT AUTO_INCREMENT NOT NULL,"
-                    + "FOREIGN KEY (SkillID) REFERENCES Skills(SkillID),"
                     + "FOREIGN KEY (Username) REFERENCES Users(Username),"
                     + "PRIMARY KEY (UserSkillID));";
 
@@ -132,7 +171,6 @@ public final class Khcraft extends JavaPlugin {
                     + "PRIMARY KEY (TransactionID));";
 
             stmt.executeUpdate(userQuery);
-            stmt.executeUpdate(skillsQuery);
             stmt.executeUpdate(enchantmentsQuery);
             stmt.executeUpdate(userSkillsQuery);
             stmt.executeUpdate(userEnchantsQuery);
