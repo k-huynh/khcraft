@@ -2,6 +2,7 @@ package org.kh.khcraft;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,15 +23,24 @@ import java.util.Map;
 
 public class SkillsListener implements Listener {
     Khcraft plugin;
-    Map<String, Object> blockExpMap;
+    Map<String, Object> miningExpMap;
+    Map<String, Object> choppingExpMap;
+    Map<String, Object> diggingExpMap;
+    Map<String, Object> farmingExpMap;
     List<String> silkTouchExceptions;
     List<String> tillableList;
+    List<String> cropsList;
 
     public SkillsListener(Khcraft instance){
         plugin = instance;
-        blockExpMap = plugin.getConfig().getConfigurationSection("skills.blocks").getValues(false);
-        silkTouchExceptions = plugin.getConfig().getStringList("skills.silkTouch");
-        tillableList = plugin.getConfig().getStringList("skills.tillableList");
+        miningExpMap = plugin.getConfig().getConfigurationSection("skills.mining.blocks").getValues(false);
+        choppingExpMap = plugin.getConfig().getConfigurationSection("skills.mining.blocks").getValues(false);
+        diggingExpMap = plugin.getConfig().getConfigurationSection("skills.mining.blocks").getValues(false);
+        farmingExpMap = plugin.getConfig().getConfigurationSection("skills.mining.blocks").getValues(false);
+
+        silkTouchExceptions = plugin.getConfig().getStringList("skills.mining.silkTouch");
+        tillableList = plugin.getConfig().getStringList("skills.farming.tillableList");
+        cropsList = plugin.getConfig().getStringList("skills.farming.cropsList");
     }
 
     @EventHandler
@@ -78,20 +88,20 @@ public class SkillsListener implements Listener {
         Block block = event.getBlock();
         Material blockMaterial = block.getType();
 
-        double exp = 1;
+        double exp = 0;
 
         // using pickaxe
         if (toolName.contains("_PICKAXE")) {
             // get xp based on block broken
-            if (blockExpMap.containsKey(blockMaterial.toString())) {
+            if (miningExpMap.containsKey(blockMaterial.toString())) {
                 // check if using silk touch; if not, then use the special exp
                 if (!mainItem.containsEnchantment(Enchantment.SILK_TOUCH)){
-                    exp = Double.parseDouble(blockExpMap.get(blockMaterial.toString()).toString());
+                    exp = Double.parseDouble(miningExpMap.get(blockMaterial.toString()).toString());
                 }
                 // if using silk touch, then use special exp if not an exception block
                 else {
                     if (!silkTouchExceptions.contains(blockMaterial.toString())) {
-                        exp = Double.parseDouble(blockExpMap.get(blockMaterial.toString()).toString());
+                        exp = Double.parseDouble(miningExpMap.get(blockMaterial.toString()).toString());
                     }
                 }
             }
@@ -106,7 +116,9 @@ public class SkillsListener implements Listener {
         // using axe
         else if (toolName.contains("_AXE")) {
             // get xp based on block broken
-            exp = 1;
+            if (choppingExpMap.containsKey(blockMaterial.toString())) {
+                exp = Double.parseDouble(choppingExpMap.get(blockMaterial.toString()).toString());
+            }
 
             // give xp to chopping skill
             // get player name
@@ -118,7 +130,9 @@ public class SkillsListener implements Listener {
         // using shovel
         else if (toolName.contains("_SHOVEL")) {
             // get xp based on block broken
-            exp = 1;
+            if (diggingExpMap.containsKey(blockMaterial.toString())) {
+                exp = Double.parseDouble(diggingExpMap.get(blockMaterial.toString()).toString());
+            }
 
             // give xp to digging skill
             // get player name
@@ -129,7 +143,21 @@ public class SkillsListener implements Listener {
         // using hoe
         else if (toolName.contains("_HOE")) {
             // get xp based on block broken
-            exp = 1;
+            if (farmingExpMap.containsKey(blockMaterial.toString())) {
+                exp = Double.parseDouble(farmingExpMap.get(blockMaterial.toString()).toString());
+            }
+
+            // if it was a crop then only give xp if age = max
+            if (cropsList.contains(blockMaterial.toString())) {
+                Ageable ageable = (Ageable) block.getBlockData();
+                int currentAge = ageable.getAge();
+                int maxAge= ageable.getMaximumAge();
+
+                if (currentAge == maxAge) {
+                    exp = 1.0;
+                }
+
+            }
 
             // give xp to farming skill
             // get player name
