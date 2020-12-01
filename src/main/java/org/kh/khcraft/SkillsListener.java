@@ -7,7 +7,9 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.PlayerInventory;
@@ -171,48 +173,61 @@ public class SkillsListener implements Listener {
     // need to use this to check if hoes are being used to till ground, or axes are being used to strip wood
     @EventHandler
     public void onPlayerInteractEvent(PlayerInteractEvent event){
+        // check if it was a right click
+        if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.hasItem()) {
+            // get tool used to interact with the block (main hand item)
+            Player player = event.getPlayer();
+            ItemStack usedItem = event.getItem();
+            String usedItemName = usedItem.getType().toString();
 
-        // get tool used to interact with the block (main hand item)
-        Player player = event.getPlayer();
-        PlayerInventory playerInventory = player.getInventory();
-        ItemStack mainItem = playerInventory.getItemInMainHand();
-        String toolName = mainItem.getType().toString();
+            // get the block being interacted with
+            Block block = event.getClickedBlock();
 
-        // get the block being interacted with
-        Block block = event.getClickedBlock();
+            // using axe
+            if (usedItemName.contains("_AXE")) {
+                // check if it's 'wood' or 'log' block and has not been stripped yet
+                if ((block.getType().toString().contains("_LOG") || block.getType().toString().contains("_WOOD"))
+                        && !block.getType().toString().contains("STRIPPED")){
+                    double exp = 0.2;
 
-        // check if using hoe
-        if (toolName.contains("_HOE")){
-            // check if it's tillable
-            if (tillableList.contains(block.getType().toString())){
-                double exp = 0.2;
+                    // give xp to chopping skill
+                    // get player name
+                    String playerName = player.getPlayerProfile().getName();
 
-                // give xp to farming skill
-                // get player name
-                String playerName = player.getPlayerProfile().getName();
-
-                addToSkillExp(exp, "FARMING", playerName);
-
+                    addToSkillExp(exp, "CHOPPING", playerName);
+                }
             }
 
-        }
+            // using shovel
+            else if (usedItemName.contains("_SHOVEL")) {
+                // check if it's grass block (note that it becomes any form of dirt in 1.17)
+                if (block.getType().equals(Material.GRASS_BLOCK)) {
+                    double exp = 0.2;
 
-        // using axe
-        else if (toolName.contains("_AXE")){
-            // check if it's 'wood' or 'log' block and has not been stripped yet
-            if ((block.getType().toString().contains("_LOG") || block.getType().toString().contains("_WOOD"))
-                && !block.getType().toString().contains("STRIPPED")){
-                double exp = 0.2;
+                    // give xp to chopping skill
+                    // get player name
+                    String playerName = player.getPlayerProfile().getName();
 
-                // give xp to chopping skill
-                // get player name
-                String playerName = player.getPlayerProfile().getName();
-
-                addToSkillExp(exp, "CHOPPING", playerName);
+                    addToSkillExp(exp, "DIGGING", playerName);
+                }
             }
         }
+    }
 
+    @EventHandler
+    public void onBlockPlaceEvent(BlockPlaceEvent event) {
+        // System.out.printf("Block placed: %s\n", event.getBlockPlaced().getType().toString());
+        // just need to check if block placed is farmland
+        if (event.getBlockPlaced().getType().equals(Material.FARMLAND)) {
+            double exp = 0.2;
 
+            // give xp to farming skill
+            // get player name
+            Player player = event.getPlayer();
+            String playerName = player.getPlayerProfile().getName();
+
+            addToSkillExp(exp, "FARMING", playerName);
+        }
     }
 
     public void addToSkillExp(double exp, String skillName, String playerName){

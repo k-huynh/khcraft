@@ -218,6 +218,9 @@ public final class Khcraft extends JavaPlugin {
         config.addDefault("skills.farming.blocks.JUNGLE_LEAVES", 1);
         config.addDefault("skills.farming.blocks.ACACIA_LEAVES", 1);
         config.addDefault("skills.farming.blocks.DARK_OAK_LEAVES", 1);
+        // crop products
+        config.addDefault("skills.farming.blocks.MELON", 1);
+        config.addDefault("skills.farming.blocks.PUMPKIN", 1);
 
         // crops
         List<String> cropsList = Arrays.asList("WHEAT",
