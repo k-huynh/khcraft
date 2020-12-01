@@ -34,9 +34,9 @@ public class SkillsListener implements Listener {
     public SkillsListener(Khcraft instance){
         plugin = instance;
         miningExpMap = plugin.getConfig().getConfigurationSection("skills.mining.blocks").getValues(false);
-        choppingExpMap = plugin.getConfig().getConfigurationSection("skills.mining.blocks").getValues(false);
-        diggingExpMap = plugin.getConfig().getConfigurationSection("skills.mining.blocks").getValues(false);
-        farmingExpMap = plugin.getConfig().getConfigurationSection("skills.mining.blocks").getValues(false);
+        choppingExpMap = plugin.getConfig().getConfigurationSection("skills.chopping.blocks").getValues(false);
+        diggingExpMap = plugin.getConfig().getConfigurationSection("skills.digging.blocks").getValues(false);
+        farmingExpMap = plugin.getConfig().getConfigurationSection("skills.farming.blocks").getValues(false);
 
         silkTouchExceptions = plugin.getConfig().getStringList("skills.mining.silkTouch");
         tillableList = plugin.getConfig().getStringList("skills.farming.tillableList");
