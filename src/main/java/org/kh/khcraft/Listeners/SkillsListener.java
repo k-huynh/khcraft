@@ -1,5 +1,6 @@
-package org.kh.khcraft;
+package org.kh.khcraft.Listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
@@ -20,7 +21,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
-import sun.jvm.hotspot.runtime.BasicLock;
+import org.kh.khcraft.Events.SkillExpEvent;
+import org.kh.khcraft.Khcraft;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -121,6 +123,8 @@ public class SkillsListener implements Listener {
             String playerName = player.getPlayerProfile().getName();
 
             addToSkillExp(exp, "MINING", playerName);
+            SkillExpEvent skillExpEvent = new SkillExpEvent("MINING", playerName, player, exp);
+            Bukkit.getPluginManager().callEvent(skillExpEvent);
         }
 
         // using axe

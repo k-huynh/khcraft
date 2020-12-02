@@ -1,4 +1,4 @@
-package org.kh.khcraft;
+package org.kh.khcraft.Listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

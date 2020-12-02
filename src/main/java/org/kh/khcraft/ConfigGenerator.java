@@ -583,6 +583,26 @@ public class ConfigGenerator {
         config.addDefault("skills.digging.blocks.SOUL_SOIL", 1);
         config.addDefault("skills.digging.blocks.SNOW_BLOCK", 1);
 
+        config.addDefault("skills.digging.blocks.SNOW", 0.5);
+
+        // FROM CHEAH
+        config.addDefault("skills.digging.blocks.WHITE_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.ORANGE_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.MAGENTA_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.LIGHT_BLUE_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.YELLOW_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.LIME_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.PINK_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.GRAY_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.LIGHT_GRAY_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.CYAN_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.PURPLE_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.BLUE_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.BROWN_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.GREEN_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.RED_CONCRETE_POWDER", 1);
+        config.addDefault("skills.digging.blocks.BLACK_CONCRETE_POWDER", 1);
+
         /*
          * block exp (farming)
          */
@@ -597,6 +617,11 @@ public class ConfigGenerator {
         config.addDefault("skills.farming.blocks.JUNGLE_LEAVES", 1);
         config.addDefault("skills.farming.blocks.ACACIA_LEAVES", 1);
         config.addDefault("skills.farming.blocks.DARK_OAK_LEAVES", 1);
+
+        // from cheah
+        config.addDefault("skills.farming.blocks.SPONGE", 1);
+        config.addDefault("skills.farming.blocks.WET_SPONGE", 1);
+        config.addDefault("skills.farming.blocks.TARGET", 1);
 
         // crops
         List<String> cropsList = Arrays.asList("WHEAT",
@@ -622,6 +647,43 @@ public class ConfigGenerator {
                 "NETHER_QUARTZ_ORE",
                 "NETHER_GOLD_ORE");
         config.addDefault("skills.mining.silkTouch", silkTouchExceptionList);
+
+        // enchantments-skills dictionary
+//        config.addDefault("skills.enchantments.ARROW_DAMAGE", "ARCHERY");
+//        config.addDefault("skills.enchantments.ARROW_FIRE", "ARCHERY");
+//        config.addDefault("skills.enchantments.ARROW_INFINITE", "ARCHERY");
+//        config.addDefault("skills.enchantments.ARROW_KNOCKBACK", "ARCHERY");
+//        config.addDefault("skills.enchantments.DURABILITY", "ARCHERY");
+//
+//        config.addDefault("skills.enchantments.CHANNELING", "TRIDENT");
+//        config.addDefault("skills.enchantments.DURABILITY", "TRIDENT");
+//        config.addDefault("skills.enchantments.IMPALING", "TRIDENT");
+//
+//        config.addDefault("skills.enchantments.DAMAGE_ALL", "COMBAT");
+//        config.addDefault("skills.enchantments.DAMAGE_ARTHROPODS", "COMBAT");
+//        config.addDefault("skills.enchantments.DAMAGE_UNDEAD", "COMBAT");
+//        config.addDefault("skills.enchantments.DURABILITY", "COMBAT");
+//        config.addDefault("skills.enchantments.FIRE_ASPECT", "COMBAT");
+//        config.addDefault("skills.enchantments.KNOCKBACK", "COMBAT");
+//
+//        config.addDefault("skills.enchantments.DEPTH_STRIDER", "GENERAL");
+//        config.addDefault("skills.enchantments.FROST_WALKER", "GENERAL");
+//        config.addDefault("skills.enchantments.DURABILITY", "GENERAL");
+//
+//        config.addDefault("skills.enchantments.DIG_SPEED", "MINING");
+//        config.addDefault("skills.enchantments.DURABILITY", "MINING");
+//
+//        config.addDefault("skills.enchantments.DIG_SPEED", "DIGGING");
+//        config.addDefault("skills.enchantments.DURABILITY", "DIGGING");
+//
+//        config.addDefault("skills.enchantments.DIG_SPEED", "CHOPPING");
+//        config.addDefault("skills.enchantments.DURABILITY", "CHOPPING");
+//
+//        config.addDefault("skills.enchantments.DIG_SPEED", "FARMING");
+//        config.addDefault("skills.enchantments.DURABILITY", "FARMING");
+//
+//        config.addDefault("skills.enchantments.DURABILITY", "FISHING");
+
 
 
         config.options().copyDefaults(true);
