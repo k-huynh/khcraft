@@ -14,6 +14,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.PlayerInventory;
@@ -295,6 +296,22 @@ public class SkillsListener implements Listener {
         // add exp if indeed it was a player that caused the damage
         if (playerDamager != null) {
             addToSkillExp(damageDealt, damageSkill, playerDamager.getPlayer().getName());
+        }
+    }
+
+    /*
+     * FISHING
+     */
+
+    @EventHandler
+    public void onPlayerFishEvent(PlayerFishEvent event) {
+        // check if catch was successful
+        if (event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) {
+            double exp = 1.0;
+            // get player
+            Player player = event.getPlayer();
+
+            addToSkillExp(exp, "FISHING", player.getPlayer().getName());
         }
     }
 
