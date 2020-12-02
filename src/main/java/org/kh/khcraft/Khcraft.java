@@ -61,6 +61,7 @@ public final class Khcraft extends JavaPlugin {
                                                 "COMBAT",
                                                 "FISHING",
                                                 "ARCHERY",
+                                                "TRIDENT",
                                                 "GENERAL");
         config.addDefault("skills.list", skillsList);
 
@@ -98,7 +99,6 @@ public final class Khcraft extends JavaPlugin {
         config.addDefault("skills.mining.blocks.DARK_PRISMARINE", 1);
         config.addDefault("skills.mining.blocks.PRISMARINE", 1);
         config.addDefault("skills.mining.blocks.PRISMARINE_BRICKS", 1);
-        config.addDefault("skills.mining.blocks.SEA_LANTERN", 1);
         // nether blocks
         config.addDefault("skills.mining.blocks.NETHERRACK", 0.5);
         config.addDefault("skills.mining.blocks.WARPED_NYLIUM", 0.5);
@@ -183,7 +183,148 @@ public final class Khcraft extends JavaPlugin {
         config.addDefault("skills.chopping.blocks.PUMPKIN_BLOCK", 1);
         config.addDefault("skills.chopping.blocks.RED_MUSHROOM_BLOCK", 1);
         config.addDefault("skills.chopping.blocks.BROWN_MUSHROOM_BLOCK", 1);
+        // crop products
+        config.addDefault("skills.chopping.blocks.MELON", 1);
+        config.addDefault("skills.chopping.blocks.PUMPKIN", 1);
 
+        // from cheah
+        config.addDefault("skills.chopping.blocks.MUSHROOM_STEM", 1);
+        config.addDefault("skills.chopping.blocks.BEE_NEST", 1);
+        config.addDefault("skills.chopping.blocks.VINE", 1);
+        config.addDefault("skills.chopping.blocks.JACK_O_LANTERN", 1);
+        config.addDefault("skills.chopping.blocks.COCOA", 1);
+
+        config.addDefault("skills.chopping.blocks.WHITE_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.ORANGE_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.MAGENTA_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.LIGHT_BLUE_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.YELLOW_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.LIME_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.PINK_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.GRAY_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.LIGHT_GRAY_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.CYAN_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.PURPLE_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.BLUE_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.BROWN_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.GREEN_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.RED_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.BLACK_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.WHITE_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.ORANGE_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.MAGENTA_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.LIGHT_BLUE_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.YELLOW_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.LIME_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.PINK_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.GRAY_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.LIGHT_GRAY_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.CYAN_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.PURPLE_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.BLUE_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.BROWN_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.GREEN_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.RED_WALL_BANNER", 1);
+        config.addDefault("skills.chopping.blocks.BLACK_WALL_BANNER", 1);
+
+        config.addDefault("skills.chopping.blocks.BARREL", 1);
+        config.addDefault("skills.chopping.blocks.BEEHIVE", 1);
+        config.addDefault("skills.chopping.blocks.BOOKSHELF", 1);
+        config.addDefault("skills.chopping.blocks.CAMPFIRE", 1);
+        config.addDefault("skills.chopping.blocks.CARTOGRAPHY_TABLE", 1);
+        config.addDefault("skills.chopping.blocks.CHEST", 1);
+        config.addDefault("skills.chopping.blocks.COMPOSTER", 1);
+        config.addDefault("skills.chopping.blocks.CRAFTING_TABLE", 1);
+        config.addDefault("skills.chopping.blocks.DAYLIGHT_DETECTOR", 1);
+        config.addDefault("skills.chopping.blocks.FLETCHING_TABLE", 1);
+        config.addDefault("skills.chopping.blocks.JUKEBOX", 1);
+        config.addDefault("skills.chopping.blocks.LADDER", 1);
+        config.addDefault("skills.chopping.blocks.LECTERN", 1);
+        config.addDefault("skills.chopping.blocks.LOOM", 1);
+        config.addDefault("skills.chopping.blocks.NOTE_BLOCK", 1);
+        config.addDefault("skills.chopping.blocks.SMITHING_TABLE", 1);
+        config.addDefault("skills.chopping.blocks.TRAPPED_CHEST", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_FENCE", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_FENCE", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_FENCE", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_FENCE", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_FENCE", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_FENCE", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_FENCE", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_FENCE", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_FENCE_GATE", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_FENCE_GATE", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_FENCE_GATE", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_FENCE_GATE", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_FENCE_GATE", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_FENCE_GATE", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_FENCE_GATE", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_FENCE_GATE", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_SIGN", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_SIGN", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_SIGN", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_SIGN", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_SIGN", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_SIGN", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_SIGN", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_SIGN", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_BUTTON", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_BUTTON", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_BUTTON", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_BUTTON", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_BUTTON", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_BUTTON", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_BUTTON", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_BUTTON", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_DOOR", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_DOOR", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_DOOR", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_DOOR", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_DOOR", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_DOOR", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_DOOR", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_DOOR", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_PRESSURE_PLATE", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_PRESSURE_PLATE", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_PRESSURE_PLATE", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_PRESSURE_PLATE", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_PRESSURE_PLATE", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_PRESSURE_PLATE", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_PRESSURE_PLATE", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_PRESSURE_PLATE", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_SLAB", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_SLAB", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_SLAB", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_SLAB", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_SLAB", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_SLAB", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_SLAB", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_SLAB", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_STAIRS", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_STAIRS", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_STAIRS", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_STAIRS", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_STAIRS", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_STAIRS", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_STAIRS", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_STAIRS", 1);
+
+        config.addDefault("skills.chopping.blocks.OAK_TRAPDOOR", 1);
+        config.addDefault("skills.chopping.blocks.SPRUCE_TRAPDOOR", 1);
+        config.addDefault("skills.chopping.blocks.BIRCH_TRAPDOOR", 1);
+        config.addDefault("skills.chopping.blocks.JUNGLE_TRAPDOOR", 1);
+        config.addDefault("skills.chopping.blocks.ACACIA_TRAPDOOR", 1);
+        config.addDefault("skills.chopping.blocks.DARK_OAK_TRAPDOOR", 1);
+        config.addDefault("skills.chopping.blocks.CRIMSON_TRAPDOOR", 1);
+        config.addDefault("skills.chopping.blocks.WARPED_TRAPDOOR", 1);
 
         /*
          * block exp (digging)
@@ -218,9 +359,6 @@ public final class Khcraft extends JavaPlugin {
         config.addDefault("skills.farming.blocks.JUNGLE_LEAVES", 1);
         config.addDefault("skills.farming.blocks.ACACIA_LEAVES", 1);
         config.addDefault("skills.farming.blocks.DARK_OAK_LEAVES", 1);
-        // crop products
-        config.addDefault("skills.farming.blocks.MELON", 1);
-        config.addDefault("skills.farming.blocks.PUMPKIN", 1);
 
         // crops
         List<String> cropsList = Arrays.asList("WHEAT",

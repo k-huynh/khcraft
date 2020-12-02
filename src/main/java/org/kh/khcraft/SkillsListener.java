@@ -4,16 +4,21 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Trident;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.projectiles.ProjectileSource;
 import sun.jvm.hotspot.runtime.BasicLock;
 
 import java.sql.ResultSet;
@@ -45,6 +50,7 @@ public class SkillsListener implements Listener {
         cropsList = plugin.getConfig().getStringList("skills.farming.cropsList");
     }
 
+    // initialise rows in db for when a player first joins
     @EventHandler
     public void onPlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -78,6 +84,7 @@ public class SkillsListener implements Listener {
         }
     }
 
+    // used for when players break certain blocks with certain tools
     @EventHandler
     public void onPlayerBlockBreakEvent(BlockBreakEvent event) {
         // get tool used to break the block (main hand item)
@@ -170,7 +177,7 @@ public class SkillsListener implements Listener {
 
     }
 
-    // need to use this to check if hoes are being used to till ground, or axes are being used to strip wood
+    // need to use this to check if hoes are being used to make dirt paths wit hshovels, or axes are being used to strip wood
     @EventHandler
     public void onPlayerInteractEvent(PlayerInteractEvent event){
         // check if it was a right click
@@ -214,6 +221,7 @@ public class SkillsListener implements Listener {
         }
     }
 
+    // used to check when a player uses a hoe to till the ground
     @EventHandler
     public void onBlockPlaceEvent(BlockPlaceEvent event) {
         // System.out.printf("Block placed: %s\n", event.getBlockPlaced().getType().toString());
@@ -229,6 +237,68 @@ public class SkillsListener implements Listener {
             addToSkillExp(exp, "FARMING", playerName);
         }
     }
+
+    /*
+     * COMBAT EVENTS
+     */
+    @EventHandler
+    public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
+        // check if the damage was caused by a player directly, or by a projectile thrown by a player
+        Entity damager = event.getDamager();
+        Player playerDamager = null;
+        Double damageDealt = 0.0;
+        String damageSkill = "COMBAT";
+
+        if (damager instanceof Arrow) {
+            // check if arrow was thrown by player
+            Arrow arrow = (Arrow) damager;
+            ProjectileSource shooter = arrow.getShooter();
+
+            if (shooter instanceof Player) {
+                playerDamager = (Player) shooter;
+
+                // get damage dealt
+                damageDealt = event.getFinalDamage();
+                damageSkill = "ARCHERY";
+
+            }
+        }
+        else if (damager instanceof Player) {
+            // regular damage done by player melee attacks with any item
+            playerDamager = (Player) damager;
+
+            // get damage dealt
+            damageDealt = event.getFinalDamage();
+
+            // check if using trident melee by looking at item in player's main hand
+            PlayerInventory inventory = playerDamager.getInventory();
+            ItemStack mainItem = inventory.getItemInMainHand();
+
+            if (mainItem.getType().equals(Material.TRIDENT)) {
+                damageSkill = "TRIDENT";
+            }
+        }
+        else if (damager instanceof Trident) {
+            // check if trident was thrown by player
+            Trident trident = (Trident) damager;
+            ProjectileSource shooter = trident.getShooter();
+
+            if (shooter instanceof Player) {
+                 playerDamager = (Player) shooter;
+
+                 // get damage dealt
+                damageDealt = event.getFinalDamage();
+                damageSkill = "TRIDENT";
+            }
+        }
+
+        // add exp if indeed it was a player that caused the damage
+        if (playerDamager != null) {
+            addToSkillExp(damageDealt, damageSkill, playerDamager.getPlayer().getName());
+        }
+    }
+
+
 
     public void addToSkillExp(double exp, String skillName, String playerName){
         // give xp to chopping skill
