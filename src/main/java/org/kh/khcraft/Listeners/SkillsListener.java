@@ -123,7 +123,7 @@ public class SkillsListener implements Listener {
             String playerName = player.getPlayerProfile().getName();
 
             addToSkillExp(exp, "MINING", playerName);
-            SkillExpEvent skillExpEvent = new SkillExpEvent("MINING", playerName, player, exp);
+            SkillExpEvent skillExpEvent = new SkillExpEvent("MINING", playerName, exp);
             Bukkit.getPluginManager().callEvent(skillExpEvent);
         }
 
@@ -139,6 +139,8 @@ public class SkillsListener implements Listener {
             String playerName = player.getPlayerProfile().getName();
 
             addToSkillExp(exp, "CHOPPING", playerName);
+            SkillExpEvent skillExpEvent = new SkillExpEvent("CHOPPING", playerName, exp);
+            Bukkit.getPluginManager().callEvent(skillExpEvent);
 
         }
         // using shovel
@@ -153,6 +155,8 @@ public class SkillsListener implements Listener {
             String playerName = player.getPlayerProfile().getName();
 
             addToSkillExp(exp, "DIGGING", playerName);
+            SkillExpEvent skillExpEvent = new SkillExpEvent("DIGGING", playerName, exp);
+            Bukkit.getPluginManager().callEvent(skillExpEvent);
         }
         // using hoe
         else if (toolName.contains("_HOE")) {
@@ -178,6 +182,8 @@ public class SkillsListener implements Listener {
             String playerName = player.getPlayerProfile().getName();
 
             addToSkillExp(exp, "FARMING", playerName);
+            SkillExpEvent skillExpEvent = new SkillExpEvent("FARMING", playerName, exp);
+            Bukkit.getPluginManager().callEvent(skillExpEvent);
         }
 
     }
@@ -207,6 +213,8 @@ public class SkillsListener implements Listener {
                     String playerName = player.getPlayerProfile().getName();
 
                     addToSkillExp(exp, "CHOPPING", playerName);
+                    SkillExpEvent skillExpEvent = new SkillExpEvent("CHOPPING", playerName, exp);
+                    Bukkit.getPluginManager().callEvent(skillExpEvent);
                 }
             }
 
@@ -221,6 +229,8 @@ public class SkillsListener implements Listener {
                     String playerName = player.getPlayerProfile().getName();
 
                     addToSkillExp(exp, "DIGGING", playerName);
+                    SkillExpEvent skillExpEvent = new SkillExpEvent("DIGGING", playerName, exp);
+                    Bukkit.getPluginManager().callEvent(skillExpEvent);
                 }
             }
         }
@@ -240,6 +250,8 @@ public class SkillsListener implements Listener {
             String playerName = player.getPlayerProfile().getName();
 
             addToSkillExp(exp, "FARMING", playerName);
+            SkillExpEvent skillExpEvent = new SkillExpEvent("FARMING", playerName, exp);
+            Bukkit.getPluginManager().callEvent(skillExpEvent);
         }
     }
 
@@ -299,7 +311,10 @@ public class SkillsListener implements Listener {
 
         // add exp if indeed it was a player that caused the damage
         if (playerDamager != null) {
-            addToSkillExp(damageDealt, damageSkill, playerDamager.getPlayer().getName());
+            String playerName = playerDamager.getPlayer().getName();
+            addToSkillExp(damageDealt, damageSkill, playerName);
+            SkillExpEvent skillExpEvent = new SkillExpEvent(damageSkill, playerName, damageDealt);
+            Bukkit.getPluginManager().callEvent(skillExpEvent);
         }
     }
 
@@ -314,8 +329,11 @@ public class SkillsListener implements Listener {
             double exp = 1.0;
             // get player
             Player player = event.getPlayer();
+            String playerName = player.getPlayer().getName();
 
             addToSkillExp(exp, "FISHING", player.getPlayer().getName());
+            SkillExpEvent skillExpEvent = new SkillExpEvent("FISHING", playerName, exp);
+            Bukkit.getPluginManager().callEvent(skillExpEvent);
         }
     }
 
