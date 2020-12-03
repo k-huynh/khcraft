@@ -2,7 +2,7 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 40-45% done? 
+### Broken 💔 maybe 45% done? 
 <br>
 
 ## Still to-do (in no particular order)
@@ -27,12 +27,19 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 ## Doing
 - database/config schema for enchantments (link to skill, level requirements)
 - populate enchantments table
-- give general skill points on (vanilla) level up
-- implement exp curves for skills to determine levels
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
 - adding 'unsafe' enchantments to items
+- tested general exp (lvl 29 --> 30 --> 0) = +1 available skill point
+- tested mining exp (lvl 0 --> 1 --> 2 --> 3) recognised level up, (lvl 4 --> 5) = +1 available skill point
+- tested chopping exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
+- tested digging exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
+- tested farming exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
+- tested combat exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
+- tested fishing exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
+- tested archery exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
+- tested trident exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
 
 ## Fully Completed
 - getting exp from mining
@@ -44,6 +51,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - getting exp from trident usage
 - getting exp from archery
 - custom skillExpEvent calling and listening
+- give general skill points on (vanilla) level up
+- implement exp curves for skills to determine levels
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
