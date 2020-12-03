@@ -21,6 +21,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
     - /skills (lists all skills, exp, levels)
     - /mining upgrade (?)
     - /mining select (?)
+    - /givesp @to skillName n (server operator only) (award skill points)
 - custom achievements
 - cap repair costs for elytra/tridents in anvil
 
@@ -53,9 +54,16 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - custom skillExpEvent calling and listening
 - give general skill points on (vanilla) level up
 - implement exp curves for skills to determine levels
+- award skill points every 5 skill levels
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
 - GUI for player stores
 - GUI for selecting skills
 - GUI for choosing new enchantments
+
+<br>
+
+# Notes
+- did not do any further testing for exp level up events
+- POTENTIAL ISSUE: due to floating point operations, there may be inaccuracies with calculating level up bounds. Most of these should be within +/- 1 exp event but i haven't tested nor verified the logic to be 100% correct. Worst case scenarios: not recognising level up resulting in missed skill point awards, or doubly recognising a level up resulting in double skill point awards

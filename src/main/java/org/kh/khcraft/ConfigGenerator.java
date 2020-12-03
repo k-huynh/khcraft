@@ -648,43 +648,210 @@ public class ConfigGenerator {
                 "NETHER_GOLD_ORE");
         config.addDefault("skills.mining.silkTouch", silkTouchExceptionList);
 
-        // enchantments-skills dictionary
-//        config.addDefault("skills.enchantments.ARROW_DAMAGE", "ARCHERY");
-//        config.addDefault("skills.enchantments.ARROW_FIRE", "ARCHERY");
-//        config.addDefault("skills.enchantments.ARROW_INFINITE", "ARCHERY");
-//        config.addDefault("skills.enchantments.ARROW_KNOCKBACK", "ARCHERY");
-//        config.addDefault("skills.enchantments.DURABILITY", "ARCHERY");
-//
-//        config.addDefault("skills.enchantments.CHANNELING", "TRIDENT");
-//        config.addDefault("skills.enchantments.DURABILITY", "TRIDENT");
-//        config.addDefault("skills.enchantments.IMPALING", "TRIDENT");
-//
-//        config.addDefault("skills.enchantments.DAMAGE_ALL", "COMBAT");
-//        config.addDefault("skills.enchantments.DAMAGE_ARTHROPODS", "COMBAT");
-//        config.addDefault("skills.enchantments.DAMAGE_UNDEAD", "COMBAT");
-//        config.addDefault("skills.enchantments.DURABILITY", "COMBAT");
-//        config.addDefault("skills.enchantments.FIRE_ASPECT", "COMBAT");
-//        config.addDefault("skills.enchantments.KNOCKBACK", "COMBAT");
-//
-//        config.addDefault("skills.enchantments.DEPTH_STRIDER", "GENERAL");
-//        config.addDefault("skills.enchantments.FROST_WALKER", "GENERAL");
-//        config.addDefault("skills.enchantments.DURABILITY", "GENERAL");
-//
-//        config.addDefault("skills.enchantments.DIG_SPEED", "MINING");
-//        config.addDefault("skills.enchantments.DURABILITY", "MINING");
-//
-//        config.addDefault("skills.enchantments.DIG_SPEED", "DIGGING");
-//        config.addDefault("skills.enchantments.DURABILITY", "DIGGING");
-//
-//        config.addDefault("skills.enchantments.DIG_SPEED", "CHOPPING");
-//        config.addDefault("skills.enchantments.DURABILITY", "CHOPPING");
-//
-//        config.addDefault("skills.enchantments.DIG_SPEED", "FARMING");
-//        config.addDefault("skills.enchantments.DURABILITY", "FARMING");
-//
-//        config.addDefault("skills.enchantments.DURABILITY", "FISHING");
+        /*
+         * enchantments by tool by skill
+         */
+        List<String> pickaxeMiningEnchantmentsList = Arrays.asList("DURABILITY",
+                "DIG_SPEED",
+                "SILK_TOUCH",
+                "LOOT_BONUS_BLOCKS");
+
+        List<String> shovelDiggingEnchantmentsList = Arrays.asList("DURABILITY",
+                "DIG_SPEED",
+                "SILK_TOUCH",
+                "LOOT_BONUS_BLOCKS");
+
+        List<String> axeChoppingEnchantmentsList = Arrays.asList("DURABILITY",
+                "DIG_SPEED",
+                "SILK_TOUCH",
+                "LOOT_BONUS_BLOCKS");
+
+        List<String> hoeFarmingEnchantmentsList = Arrays.asList("DURABILITY",
+                "DIG_SPEED",
+                "SILK_TOUCH",
+                "LOOT_BONUS_BLOCKS");
+
+        List<String> swordCombatEnchantmentsList = Arrays.asList("DAMAGE_ARTHROPODS",
+                "DAMAGE_ALL",
+                "DAMAGE_UNDEAD",
+                "DURABILITY",
+                "FIRE_ASPECT",
+                "KNOCKBACK",
+                "LOOT_BONUS_MOBS",
+                "SWEEPING_EDGE");
+
+        List<String> axeCombatEnchantmentsList = Arrays.asList("DAMAGE_ARTHROPODS",
+                "DAMAGE_ALL",
+                "DAMAGE_UNDEAD",
+                "DURABILITY");
+
+        List<String> tridentTridentEnchantmentList = Arrays.asList("CHANNELING",
+                "IMPALING",
+                "LOYALTY",
+                "RIPTIDE",
+                "DURABILITY");
+
+        List<String> bowArcheryEnchantmentsList = Arrays.asList("DURABILITY",
+                "ARROW_FIRE",
+                "ARROW_KNOCKBACK",
+                "ARROW_DAMAGE",
+                "ARROW_INFINITE");
+
+        List<String> crossbowArcheryEnchantmentsList = Arrays.asList("DURABILITY",
+                "QUICK_CHARGE",
+                "MULTISHOT",
+                "PIERCING");
+
+        List<String> fishingRodFishingEnchantmentsList = Arrays.asList("DURABILITY",
+                "LUCK",
+                "LURE");
+
+        List<String> shieldGeneralEnchantmentsList = Arrays.asList("DURABILITY");
+        List<String> elytraGeneralEnchantmentsList = Arrays.asList("DURABILITY");
+        List<String> shearsGeneralEnchantmentsList = Arrays.asList("DURABILITY");
+        List<String> flintGeneralEnchantmentsList = Arrays.asList("DURABILITY");
+        List<String> carrotStickGeneralEnchantmentsList = Arrays.asList("DURABILITY");
+        List<String> warpedStickGeneralEnchantmentsList = Arrays.asList("DURABILITY");
+
+        List<String> helmetGeneralEnchantmentsList = Arrays.asList("DURABILITY",
+                "PROTECTION_EXPLOSIONS",
+                "PROTECTION_FIRE",
+                "PROTECTION_PROJECTILE",
+                "PROTECTION_ENVIRONMENTAL",
+                "THORNS",
+                "WATER_WORKER",
+                "OXYGEN");
+
+        List<String> chestplateGeneralEnchantmentsList = Arrays.asList("DURABILITY",
+                "PROTECTION_EXPLOSION",
+                "PROTECTION_FIRE",
+                "PROTECTION_PROJECTILE",
+                "PROTECTION_ENVIRONMENTAL",
+                "THORNS");
+
+        List<String> leggingsGeneralEnchantmentsList = Arrays.asList("DURABILITY",
+                "PROTECTION_EXPLOSION",
+                "PROTECTION_FIRE",
+                "PROTECTION_PROJECTILE",
+                "PROTECTION_ENVIRONMENTAL",
+                "THORNS");
+
+        List<String> bootsGeneralEnchantmentsList = Arrays.asList("DURABILITY",
+                "PROTECTION_EXPLOSION",
+                "PROTECTION_FIRE",
+                "PROTECTION_PROJECTILE",
+                "PROTECTION_ENVIRONMENTAL",
+                "THORNS",
+                "DEPTH_STRIDER",
+                "PROTECTION_FALL",
+                "FROST_WALKER",
+                "SOUL_SPEED");
+
+        config.addDefault("skills.mining.enchantments.pickaxe", pickaxeMiningEnchantmentsList);
+        config.addDefault("skills.digging.enchantments.shovel", shovelDiggingEnchantmentsList);
+        config.addDefault("skills.chopping.enchantments.axe", axeChoppingEnchantmentsList);
+        config.addDefault("skills.farming.enchantments.hoe", hoeFarmingEnchantmentsList);
+        config.addDefault("skills.combat.enchantments.sword", swordCombatEnchantmentsList);
+        config.addDefault("skills.combat.enchantments.axe", axeCombatEnchantmentsList);
+        config.addDefault("skills.trident.enchantments.trident", tridentTridentEnchantmentList);
+        config.addDefault("skills.archery.enchantments.bow", bowArcheryEnchantmentsList);
+        config.addDefault("skills.archery.enchantments.crossbow", crossbowArcheryEnchantmentsList);
+        config.addDefault("skills.fishing.enchantments.fishingRod", fishingRodFishingEnchantmentsList);
+        config.addDefault("skills.general.enchantments.shield", shieldGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.elytra", elytraGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.shears", shearsGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments,flint", flintGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.carrot", carrotStickGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.warped", warpedStickGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.helmet", helmetGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.chestplate", chestplateGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.leggings", leggingsGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.boots", bootsGeneralEnchantmentsList);
+
+        // incompatibilities for enchantments
+        List<String> pickaxeMiningIncompatibleList = Arrays.asList("SILK_TOUCH", "LOOT_BONUS_BLOCKS");
+        List<String> shovelDiggingIncompatibleList = Arrays.asList("SILK_TOUCH", "LOOT_BONUS_BLOCKS");
+        List<String> axeChoppingIncompatibleList = Arrays.asList("SILK_TOUCH", "LOOT_BONUS_BLOCKS");
+        List<String> hoeFarmingIncompatibleList = Arrays.asList("SILK_TOUCH", "LOOT_BONUS_BLOCKS");
+        List<String> swordCombatIncompatibleList = Arrays.asList("DAMAGE_ARTHROPODS", "DAMAGE_ALL", "DAMAGE_UNDEAD");
+        List<String> axeCombatIncompatibleList = Arrays.asList("DAMAGE_ARTHROPODS", "DAMAGE_ALL", "DAMAGE_UNDEAD");
+        List<String> tridentTridentIncompatibleList1 = Arrays.asList("RIPTIDE", "CHANNELLING");
+        List<String> tridentTridentIncompatibleList2 = Arrays.asList("RIPTIDE", "LOYALTY");
+        List<String> crossbowArcheryIncompatibleList = Arrays.asList("PIERCING", "MULTISHOT");
+        List<String> helmetGeneralIncompatibleList = Arrays.asList("PROTECTION_EXPLOSIONS",
+                "PROTECTION_FIRE",
+                "PROTECTION_PROJECTILE",
+                "PROTECTION_ENVIRONMENTAL");
+        List<String> chestplateGeneralIncompatibleList = Arrays.asList("PROTECTION_EXPLOSIONS",
+                "PROTECTION_FIRE",
+                "PROTECTION_PROJECTILE",
+                "PROTECTION_ENVIRONMENTAL");
+        List<String> leggingsGeneralIncompatibleList = Arrays.asList("PROTECTION_EXPLOSIONS",
+                "PROTECTION_FIRE",
+                "PROTECTION_PROJECTILE",
+                "PROTECTION_ENVIRONMENTAL");
+        List<String> bootsGeneralIncompatibleList1 = Arrays.asList("PROTECTION_EXPLOSIONS",
+                "PROTECTION_FIRE",
+                "PROTECTION_PROJECTILE",
+                "PROTECTION_ENVIRONMENTAL");
+        List<String> bootsGeneralIncompatibleList2 = Arrays.asList("DEPTH_STRIDER", "FROST_WALKER");
 
 
+        config.addDefault("skills.mining.incompatibles.pickaxe", pickaxeMiningIncompatibleList);
+        config.addDefault("skills.digging.incompatible.shovel", shovelDiggingIncompatibleList);
+        config.addDefault("skills.chopping.incompatible.axe", axeChoppingIncompatibleList);
+        config.addDefault("skills.farming.incompatible.hoe", hoeFarmingIncompatibleList);
+        config.addDefault("skills.combat.incompatible.sword", swordCombatIncompatibleList);
+        config.addDefault("skills.combat.incompatible.axe", axeCombatIncompatibleList);
+        config.addDefault("skills.trident.incompatible.trident.1", tridentTridentIncompatibleList1);
+        config.addDefault("skills.trident.incompatible.trident.2", tridentTridentIncompatibleList2);
+        config.addDefault("skills.trident.incompatible.crossbow", crossbowArcheryIncompatibleList);
+        config.addDefault("skills.general.incompatible.helmet", helmetGeneralIncompatibleList);
+        config.addDefault("skills.general.incompatible.chestplate", chestplateGeneralIncompatibleList);
+        config.addDefault("skills.general.incompatible.leggings", leggingsGeneralIncompatibleList);
+        config.addDefault("skills.general.incompatible.boots.1", bootsGeneralIncompatibleList1);
+        config.addDefault("skills.general.incompatible.boots.2", bootsGeneralIncompatibleList2);
+
+        // special enchantment/skill rules (i.e. min level requirements)
+        config.addDefault("skills.mining.requirements.pickaxe.SILK_TOUCH.level", 50);
+        config.addDefault("skills.mining.requirements.pickaxe.SILK_TOUCH.points", 2);
+        config.addDefault("skills.mining.requirements.pickaxe.LOOT_BONUS_BLOCKS.level", 35);
+        config.addDefault("skills.mining.requirements.pickaxe.LOOT_BONUS_BLOCKS.points", 2);
+
+        config.addDefault("skills.digging.requirements.shovel.SILK_TOUCH.level", 50);
+        config.addDefault("skills.digging.requirements.shovel.SILK_TOUCH.points", 2);
+        config.addDefault("skills.digging.requirements.shovel.LOOT_BONUS_BLOCKS.level", 35);
+        config.addDefault("skills.digging.requirements.shovel.LOOT_BONUS_BLOCKS.points", 2);
+
+        config.addDefault("skills.chopping.requirements.axe.SILK_TOUCH.level", 50);
+        config.addDefault("skills.chopping.requirements.axe.SILK_TOUCH.points", 2);
+        config.addDefault("skills.chopping.requirements.axe.LOOT_BONUS_BLOCKS.level", 35);
+        config.addDefault("skills.chopping.requirements.axe.LOOT_BONUS_BLOCKS.points", 2);
+
+        config.addDefault("skills.farming.requirements.hoe.SILK_TOUCH.level", 50);
+        config.addDefault("skills.farming.requirements.hoe.SILK_TOUCH.points", 2);
+        config.addDefault("skills.farming.requirements.hoe.LOOT_BONUS_BLOCKS.level", 35);
+        config.addDefault("skills.farming.requirements.hoe.LOOT_BONUS_BLOCKS.points", 2);
+
+        config.addDefault("skills.combat.requirements.sword.LOOT_BONUS_MOBS.level", 35);
+        config.addDefault("skills.combat.requirements.sword.LOOT_BONUS_MOBS.points", 2);
+
+        config.addDefault("skills.general.requirements.boots.PROTECTION_FALL.level", 20);
+        config.addDefault("skills.general.requirements.boots.PROTECTION_FALL.points", 2);
+        config.addDefault("skills.general.requirements.boots.DEPTH_STRIDER.level", 20);
+        config.addDefault("skills.general.requirements.boots.DEPTH_STRIDER.points", 2);
+        config.addDefault("skills.general.requirements.boots.FROST_WALKER.level", 20);
+        config.addDefault("skills.general.requirements.boots.FROST_WALKER.points", 2);
+        config.addDefault("skills.general.requirements.boots.SOUL_SPEED.level", 20);
+        config.addDefault("skills.general.requirements.boots.SOUL_SPEED.points", 2);
+
+        config.addDefault("skills.archery.requirements.bow.ARROW_INFINITE.level", 30);
+        config.addDefault("skills.archery.requirements.bow.ARROW_INFINITE.points", 2);
+
+        config.addDefault("skills.general.requirements.helmet.OXYGEN.level", 20);
+        config.addDefault("skills.general.requirements.helmet.OXYGEN.points", 2);
+        config.addDefault("skills.general.requirements.helmet.WATER_WORKER.level", 20);
+        config.addDefault("skills.general.requirements.helmet.WATER_WORKER.points", 2);
 
         config.options().copyDefaults(true);
         plugin.saveConfig();

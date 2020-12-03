@@ -78,6 +78,8 @@ public class DatabaseHandler {
                     + "Username VARCHAR(45) NOT NULL,"
                     + "EnchantmentName VARCHAR(45) NOT NULL,"
                     + "EnchantmentLevel INT NOT NULL,"
+                    + "Equipment VARCHAR(20)"
+                    + "Enabled INT DEFAULT 0 NOT NULL"
                     + "UserEnchantmentID INT AUTO_INCREMENT NOT NULL,"
                     + "FOREIGN KEY (Username) REFERENCES Users(Username),"
                     + "FOREIGN KEY (EnchantmentName) REFERENCES Enchantments(EnchantmentName),"
