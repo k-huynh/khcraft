@@ -24,6 +24,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 
 ## Doing
 - implement auto-enchanting tools in inventory based on userenchantments
+- rename enchantments nicely for upgrade/select
+- /skills should show all your xp
 
 ## Tested as working
 - allow creative flight when holding item in off-hand

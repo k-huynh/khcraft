@@ -215,6 +215,13 @@ public abstract class SkillCommands implements TabExecutor {
                 plugin.stmt.executeUpdate(String.format("INSERT INTO UserEnchantments (Username, EnchantmentName, EnchantmentLevel, SkillName, Equipment) VALUES "
                         + "('%s', '%s', '%d', '%s', '%s');", playerName, sanitisedEnchantmentName, enchantmentLevel, skillName, toolName));
 
+                // deduct skill points
+                int reqPoints = getReqSkillPoints(skillName, toolName, sanitisedEnchantmentName);
+
+                plugin.stmt.executeUpdate(String.format("UPDATE UserSkills SET AvailablePoints = AvailablePoints - %d WHERE Username = '%s' AND SkillName = '%s';",
+                        reqPoints, playerName, skillName));
+
+
                 return true;
 
             } catch (SQLException e) {
@@ -342,7 +349,7 @@ public abstract class SkillCommands implements TabExecutor {
 
 
             int minLevel = config.getInt(String.format("skills.%s.requirements.%s.%s.level", skillName, toolName, enchantmentName));
-            int reqPoints = config.getInt(String.format("skills.%s.requirements.%s.%s.points", skillName, toolName, enchantmentName));
+            int reqPoints = getReqSkillPoints(skillName, toolName, enchantmentName);
 
             int currentXP = 0;
             int availablePoints = 0;
@@ -355,14 +362,18 @@ public abstract class SkillCommands implements TabExecutor {
                     currentXP = skillRS.getInt(1);
                     availablePoints = skillRS.getInt(2);
                 }
+                System.out.printf("xp: %d, availablepoints: %d\n", currentXP, availablePoints);
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
 
+
             MiningExp miningExp = new MiningExp(plugin);
             double currentLevel = miningExp.getCurrentSkillLevel(currentXP);
+
+            System.out.println("currentlevel: " + currentLevel);
 
             // if our skill level exceeds the minimum level, and our available skill points exceeds the required amount,
             // then list it as an option (enchantment + enchantment level)
@@ -397,6 +408,18 @@ public abstract class SkillCommands implements TabExecutor {
         // TODO do i need to handle the case where the resultset is empty??
 
         return availableLevels;
+    }
+
+    public int getReqSkillPoints(String skillName, String toolName, String enchantmentName) {
+        int reqPoints = config.getInt(String.format("skills.%s.requirements.%s.%s.points", skillName, toolName, enchantmentName));
+
+        // if there isnt an entry for it as a requirement, then the default point requirement should be 1.
+        // similarly, no min level means you can get it at any level
+        if (reqPoints == 0) {
+            reqPoints = 1;
+        }
+
+        return reqPoints;
     }
 
     public List<String> getSkillTools(String skillName) {
