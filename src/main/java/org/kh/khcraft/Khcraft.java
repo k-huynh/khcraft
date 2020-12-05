@@ -46,6 +46,8 @@ public final class Khcraft extends JavaPlugin {
         this.getCommand("fishing").setExecutor(new FishingCommand(this));
         this.getCommand("general").setExecutor(new GeneralCommand(this));
 
+        this.getCommand("skills").setExecutor(new SkillsCommand(this));
+
 
     }
 

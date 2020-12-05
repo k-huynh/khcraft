@@ -31,3 +31,6 @@ commands:
   general:
     description: todo
     usage: todo
+  skills:
+    description: todo
+    usage: todo

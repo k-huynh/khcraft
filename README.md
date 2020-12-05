@@ -16,11 +16,9 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
     - /givekb @to amount 'msg' (server operator only)
 - commands for skills
     - /skills (lists all skills, exp, levels)
-    - /mining upgrade (?)
-    - /mining select (?)
-    - /givesp @to skillName n (server operator only) (award skill points)
 - custom achievements
 - cap repair costs for elytra/tridents in anvil
+- update 'help' info with skills (i.e. replace the 'todo' and stuff)
 
 ## Doing
 - implement auto-enchanting tools in inventory based on userenchantments
@@ -66,6 +64,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - GUI for selecting skills
 - GUI for choosing new enchantments
 - add a way to 'unspec' skill points/reset skill trees
+- additional commands for skills i.e.
+    - /givesp @to skillName n (server operator only) (award skill points)
 
 <br>
 
