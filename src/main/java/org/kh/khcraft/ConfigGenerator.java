@@ -649,6 +649,30 @@ public class ConfigGenerator {
         config.addDefault("skills.mining.silkTouch", silkTouchExceptionList);
 
         /*
+         * tools associated with each skill
+         */
+        List<String> miningTools = Arrays.asList("pickaxe");
+        List<String> diggingTools = Arrays.asList("shovel");
+        List<String> choppingTools = Arrays.asList("axe");
+        List<String> farmingTools = Arrays.asList("hoe");
+        List<String> archeryTools = Arrays.asList("bow", "crossbow");
+        List<String> tridentTools = Arrays.asList("trident");
+        List<String> combatTools = Arrays.asList("sword", "axe");
+        List<String> fishingTools = Arrays.asList("fishingRod");
+        List<String> generalTools = Arrays.asList("shield", "elytra", "flint", "carrotStick", "warpedStick",
+                "helmet", "chestplate", "leggings", "boots");
+
+        config.addDefault("skills.mining.equipment", miningTools);
+        config.addDefault("skills.digging.equipment", diggingTools);
+        config.addDefault("skills.chopping.equipment", choppingTools);
+        config.addDefault("skills.farming.equipment", farmingTools);
+        config.addDefault("skills.archery.equipment", archeryTools);
+        config.addDefault("skills.trident.equipment", tridentTools);
+        config.addDefault("skills.combat.equipment", combatTools);
+        config.addDefault("skills.fishing.equipment", fishingTools);
+        config.addDefault("skills.general.equipment", generalTools);
+
+        /*
          * enchantments by tool by skill
          */
         List<String> pickaxeMiningEnchantmentsList = Arrays.asList("DURABILITY",
@@ -797,7 +821,7 @@ public class ConfigGenerator {
         List<String> bootsGeneralIncompatibleList2 = Arrays.asList("DEPTH_STRIDER", "FROST_WALKER");
 
 
-        config.addDefault("skills.mining.incompatibles.pickaxe", pickaxeMiningIncompatibleList);
+        config.addDefault("skills.mining.incompatible.pickaxe", pickaxeMiningIncompatibleList);
         config.addDefault("skills.digging.incompatible.shovel", shovelDiggingIncompatibleList);
         config.addDefault("skills.chopping.incompatible.axe", axeChoppingIncompatibleList);
         config.addDefault("skills.farming.incompatible.hoe", hoeFarmingIncompatibleList);
@@ -852,6 +876,22 @@ public class ConfigGenerator {
         config.addDefault("skills.general.requirements.helmet.OXYGEN.points", 2);
         config.addDefault("skills.general.requirements.helmet.WATER_WORKER.level", 20);
         config.addDefault("skills.general.requirements.helmet.WATER_WORKER.points", 2);
+
+        // max levels
+        config.addDefault("skills.mining.max.pickaxe.SILK_TOUCH", 1);
+        config.addDefault("skills.digging.max.shovel.SILK_TOUCH", 1);
+        config.addDefault("skills.chopping.max.axe.SILK_TOUCH", 1);
+        config.addDefault("skills.farming.max.hoe.SILK_TOUCH", 1);
+
+        config.addDefault("skills.archery.max.bow.INFINITY", 1);
+        config.addDefault("skills.archery.max.bow.FLAME", 1);
+        config.addDefault("skills.archery.max.crossbow.MULTISHOT", 1);
+        config.addDefault("skills.archery.max.crossbow.QUICK_CHARGE", 5);
+
+        config.addDefault("skills.trident.max.trident.CHANNELING", 1);
+
+        config.addDefault("skills.general.max.helmet.WATER_WORKER", 1);
+
 
         config.options().copyDefaults(true);
         plugin.saveConfig();

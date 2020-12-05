@@ -12,7 +12,7 @@ public class SkillExpEvent extends Event {
     private Player player;
     private double exp;
 
-    public SkillExpEvent(String skillName, String playerName,double exp) {
+    public SkillExpEvent(String skillName, String playerName, double exp) {
         this.skillName = skillName;
         this.playerName = playerName;
         this.exp = exp;

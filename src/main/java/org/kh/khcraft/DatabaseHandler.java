@@ -58,10 +58,10 @@ public class DatabaseHandler {
                     + "PRIMARY KEY (Username));";
 
             // enchantments table
-            String enchantmentsQuery = "CREATE TABLE IF NOT EXISTS Enchantments("
-                    + "EnchantmentName VARCHAR(45) NOT NULL,"
-                    + "SkillName VARCHAR(45) NOT NULL,"
-                    + "PRIMARY KEY (EnchantmentName));";
+//            String enchantmentsQuery = "CREATE TABLE IF NOT EXISTS Enchantments("
+//                    + "EnchantmentName VARCHAR(45) NOT NULL,"
+//                    + "SkillName VARCHAR(45) NOT NULL,"
+//                    + "PRIMARY KEY (EnchantmentName));";
 
             // userskills table
             String userSkillsQuery = "CREATE TABLE IF NOT EXISTS UserSkills("
@@ -78,11 +78,12 @@ public class DatabaseHandler {
                     + "Username VARCHAR(45) NOT NULL,"
                     + "EnchantmentName VARCHAR(45) NOT NULL,"
                     + "EnchantmentLevel INT NOT NULL,"
-                    + "Equipment VARCHAR(20)"
-                    + "Enabled INT DEFAULT 0 NOT NULL"
+                    + "SkillName VARCHAR(45) NOT NULL,"
+                    + "Equipment VARCHAR(20) NOT NULL,"
+                    + "Enabled INT DEFAULT 0 NOT NULL,"
                     + "UserEnchantmentID INT AUTO_INCREMENT NOT NULL,"
                     + "FOREIGN KEY (Username) REFERENCES Users(Username),"
-                    + "FOREIGN KEY (EnchantmentName) REFERENCES Enchantments(EnchantmentName),"
+//                    + "FOREIGN KEY (EnchantmentName) REFERENCES Enchantments(EnchantmentName),"
                     + "PRIMARY KEY (UserEnchantmentID));";
 
             // transaction log table
@@ -97,7 +98,7 @@ public class DatabaseHandler {
                     + "PRIMARY KEY (TransactionID));";
 
             plugin.stmt.executeUpdate(userQuery);
-            plugin.stmt.executeUpdate(enchantmentsQuery);
+//            plugin.stmt.executeUpdate(enchantmentsQuery);
             plugin.stmt.executeUpdate(userSkillsQuery);
             plugin.stmt.executeUpdate(userEnchantsQuery);
             plugin.stmt.executeUpdate(KBLogQuery);

@@ -3,3 +3,31 @@ version: ${project.version}
 main: org.kh.khcraft.Khcraft
 version: 1.0
 api-version: 1.16
+commands:
+  mining:
+    description: Test
+    usage: /mining <etc>
+  digging:
+    description: todo
+    usage: todo
+  chopping:
+    description: todo
+    usage: todo
+  farming:
+    description: todo
+    usage: todo
+  fishing:
+    description: todo
+    usage: todo
+  combat:
+    description: todo
+    usage: todo
+  archery:
+    description: todo
+    usage: todo
+  trident:
+    description: todo
+    usage: todo
+  general:
+    description: todo
+    usage: todo

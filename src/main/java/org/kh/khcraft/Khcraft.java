@@ -2,6 +2,7 @@ package org.kh.khcraft;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.kh.khcraft.Commands.*;
 import org.kh.khcraft.Listeners.HoverListener;
 import org.kh.khcraft.Listeners.SkillExpListener;
 import org.kh.khcraft.Listeners.SkillsListener;
@@ -12,15 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class Khcraft extends JavaPlugin {
-    FileConfiguration config = getConfig();
-
     static Connection connection;
     public Statement stmt;
-    private String hostname;
-    private String port;
-    private String username;
-    private String password;
-    private String database;
 
     @Override
     public void onEnable() {
@@ -41,11 +35,29 @@ public final class Khcraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SkillsListener(this), this);
         getServer().getPluginManager().registerEvents(new SkillExpListener(this), this);
 
+        // register commands
+        this.getCommand("mining").setExecutor(new MiningCommand(this));
+        this.getCommand("digging").setExecutor(new DiggingCommand(this));
+        this.getCommand("chopping").setExecutor(new ChoppingCommand(this));
+        this.getCommand("farming").setExecutor(new FarmingCommand(this));
+        this.getCommand("trident").setExecutor(new TridentCommand(this));
+        this.getCommand("combat").setExecutor(new CombatCommand(this));
+        this.getCommand("archery").setExecutor(new ArcheryCommand(this));
+        this.getCommand("fishing").setExecutor(new FishingCommand(this));
+        this.getCommand("general").setExecutor(new GeneralCommand(this));
+
+
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        try {
+            stmt.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
