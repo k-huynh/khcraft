@@ -2,13 +2,10 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 45% done? 
+### Broken 💔 maybe 55% done? 
 <br>
 
 ## Still to-do (in no particular order)
-- implement auto-enchanting tools in inventory based on userenchantments
-- implement method to select enchantments (owned)
-- implement method to upgrade enchantments on level up (if available)
 - change loot tables
 - disable villager trading
 - custom items (resource pack)
@@ -26,8 +23,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - cap repair costs for elytra/tridents in anvil
 
 ## Doing
-- database/config schema for enchantments (link to skill, level requirements)
-- populate enchantments table
+- implement auto-enchanting tools in inventory based on userenchantments
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
@@ -41,6 +37,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - tested fishing exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
 - tested archery exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
 - tested trident exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
+- tested upgrading enchantments for mining, archery, and chopping
+- tested selecting enchantments for mining, archery, and chopping
 
 ## Fully Completed
 - getting exp from mining
@@ -55,12 +53,16 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - give general skill points on (vanilla) level up
 - implement exp curves for skills to determine levels
 - award skill points every 5 skill levels
+- storing enchantment information in config/database
+- implement method to select enchantments (owned)
+- implement method to upgrade enchantments (from available enchantments)
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
 - GUI for player stores
 - GUI for selecting skills
 - GUI for choosing new enchantments
+- add a way to 'unspec' skill points/reset skill trees
 
 <br>
 
