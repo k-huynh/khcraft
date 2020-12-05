@@ -21,42 +21,43 @@ public class SkillExpListener implements Listener {
     public void onSkillExpEvent(SkillExpEvent event) {
         String playerName = event.getPlayerName();
         String skillName = event.getSkillName();
+        Player player = event.getPlayer();
         Double exp = event.getExpChange();
 
         // check exp for the skill to see if they've leveled up
         switch(skillName) {
             case("MINING"):
                 MiningExp miningExp = new MiningExp(plugin);
-                miningExp.handleSkillExp(playerName, skillName, exp);
+                miningExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
             case("DIGGING"):
                 DiggingExp diggingExp = new DiggingExp(plugin);
-                diggingExp.handleSkillExp(playerName, skillName, exp);
+                diggingExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
             case("CHOPPING"):
                 System.out.println("chopping exp changed");
                 ChoppingExp choppingExp = new ChoppingExp(plugin);
-                choppingExp.handleSkillExp(playerName, skillName, exp);
+                choppingExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
             case("FARMING"):
                 FarmingExp farmingExp = new FarmingExp(plugin);
-                farmingExp.handleSkillExp(playerName, skillName, exp);
+                farmingExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
             case("FISHING"):
                 FishingExp fishingExp = new FishingExp(plugin);
-                fishingExp.handleSkillExp(playerName, skillName, exp);
+                fishingExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
             case("ARCHERY"):
                 ArcheryExp archeryExp = new ArcheryExp(plugin);
-                archeryExp.handleSkillExp(playerName, skillName, exp);
+                archeryExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
             case("COMBAT"):
                 CombatExp combatExp = new CombatExp(plugin);
-                combatExp.handleSkillExp(playerName, skillName, exp);
+                combatExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
             case("TRIDENT"):
                 TridentExp tridentExp = new TridentExp(plugin);
-                tridentExp.handleSkillExp(playerName, skillName, exp);
+                tridentExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
         }
     }
@@ -72,6 +73,7 @@ public class SkillExpListener implements Listener {
         // change later if need to re-balance
         // if level will be 30, then automatically convert to 1 general skill point and reset level/exp to 0
         if (level == 30) {
+            player.sendMessage("You have been given 1 additional General skill point!");
             String playerName = player.getPlayer().getName();
 
             try {

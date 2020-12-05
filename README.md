@@ -58,6 +58,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - storing enchantment information in config/database
 - implement method to select enchantments (owned)
 - implement method to upgrade enchantments (from available enchantments)
+- Should notify on skill level up
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'

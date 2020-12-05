@@ -12,9 +12,10 @@ public class SkillExpEvent extends Event {
     private Player player;
     private double exp;
 
-    public SkillExpEvent(String skillName, String playerName, double exp) {
+    public SkillExpEvent(String skillName, String playerName, Player player, double exp) {
         this.skillName = skillName;
         this.playerName = playerName;
+        this.player = player;
         this.exp = exp;
     }
 
@@ -32,6 +33,10 @@ public class SkillExpEvent extends Event {
 
     public String getPlayerName() {
         return this.playerName;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 
     public double getExpChange() {

@@ -13,7 +13,7 @@ public abstract class SkillExp {
         plugin = instance;
     }
 
-    public void handleSkillExp(String playerName, String skillName, double exp) {
+    public void handleSkillExp(String playerName, String skillName, double exp, Player player) {
         double currentExp = getCurrentExp(playerName, skillName);
         double currentLevel = getCurrentSkillLevel(currentExp);
 
@@ -27,10 +27,12 @@ public abstract class SkillExp {
         // if the difference in exp is less than the amount we just got, then we leveled up!
         if (expDifference <= exp && expDifference >= 0.0) {
             System.out.printf("%s levelled up their %s skill to level %f!\n", playerName, skillName, currentLevel);
+            player.sendMessage(String.format("%s levelled up to level %d!", skillName, (int) currentLevel));
             // award a skill point if the level is divisible by 5
             if (currentLevel % 5 == 0 && currentLevel != 0) {
                 try {
                     plugin.stmt.executeUpdate(String.format("UPDATE UserSkills SET AvailablePoints = AvailablePoints + 1 WHERE Username = '%s' AND SkillName = '%s';", playerName, skillName));
+                    player.sendMessage(String.format("You have been granted 1 additional skill point for %s!", skillName));
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
