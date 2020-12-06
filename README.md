@@ -18,7 +18,6 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - test that skill point requirements and level requirements for enchants are working correctly
 
 ## Doing
-- make sure flint and steel, carrot and warped fungus on stick enchantments are handled properly (the way im handling the strings dont work 😪)
 - test that you dont get doubly awarded skill points
 - commands for economy
     - /trade @to amount 'msg'
@@ -43,6 +42,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - tested automatic enchanting of tools based on selecting enchantments
 - tested disabling of enchantments for tools based on skill/tool
 - right clicking villagers (with professions) do not bring up the trading gui
+- tested enchanting flint and steel, and warped fungus on a stick
 
 ## Fully Completed
 - getting exp from mining
@@ -65,6 +65,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - implement auto-enchanting tools in inventory based on userenchantments
 - add a way to remove all selected enchantments for a skill/tool
 - disable villager trading
+- make sure flint and steel, carrot and warped fungus on stick enchantments are handled properly 
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
