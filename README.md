@@ -15,7 +15,6 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - rename enchantments nicely for upgrade/select without breaking everything
 - test everything properly lol
 - make /skills output look nicer
-- test that skill point requirements and level requirements for enchants are working correctly
 
 ## Doing
 - commands for economy
@@ -44,6 +43,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - tested enchanting flint and steel, and warped fungus on a stick
 - /skills display correctly displays xp and current level
 - skill exp no longer double counting level ups (and hence skill point awarding) (i think)
+- test that skill point requirements and level requirements for enchants are working correctly (ACCORDING TO CHEAH)
 
 ## Fully Completed
 - getting exp from mining

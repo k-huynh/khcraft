@@ -62,9 +62,6 @@ public class EnchantmentListener implements Listener {
                     enchantTool(player.getName(), toolList.get(i), pickedUpItem);
                 }
             }
-
-
-            setEnchantments(player);
         }
     }
 

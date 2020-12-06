@@ -207,9 +207,9 @@ public class ConfigGenerator {
         config.addDefault("skills.mining.blocks.CRYING_OBSIDIAN", 5);
         config.addDefault("skills.mining.blocks.SPAWNER", 25);
 
-        config.addDefault("skills.mining.blocks.COAL_ORE", 10);
+        config.addDefault("skills.mining.blocks.COAL_ORE", 5);
         config.addDefault("skills.mining.blocks.DIAMOND_ORE", 40);
-        config.addDefault("skills.mining.blocks.EMERALD_ORE", 20);
+        config.addDefault("skills.mining.blocks.EMERALD_ORE", 50);
         config.addDefault("skills.mining.blocks.LAPIS_ORE", 10);
         config.addDefault("skills.mining.blocks.REDSTONE_ORE", 5);
         config.addDefault("skills.mining.blocks.NETHER_QUARTZ_ORE", 5);
@@ -611,12 +611,12 @@ public class ConfigGenerator {
         config.addDefault("skills.farming.blocks.SHROOMLIGHT", 1);
         config.addDefault("skills.farming.blocks.HAY_BALE", 1);
         // leaves
-        config.addDefault("skills.farming.blocks.OAK_LEAVES", 1);
-        config.addDefault("skills.farming.blocks.SPRUCE_LEAVES", 1);
-        config.addDefault("skills.farming.blocks.BIRCH_LEAVES", 1);
-        config.addDefault("skills.farming.blocks.JUNGLE_LEAVES", 1);
-        config.addDefault("skills.farming.blocks.ACACIA_LEAVES", 1);
-        config.addDefault("skills.farming.blocks.DARK_OAK_LEAVES", 1);
+        config.addDefault("skills.farming.blocks.OAK_LEAVES", 0.2);
+        config.addDefault("skills.farming.blocks.SPRUCE_LEAVES", 0.2);
+        config.addDefault("skills.farming.blocks.BIRCH_LEAVES", 0.2);
+        config.addDefault("skills.farming.blocks.JUNGLE_LEAVES", 0.2);
+        config.addDefault("skills.farming.blocks.ACACIA_LEAVES", 0.2);
+        config.addDefault("skills.farming.blocks.DARK_OAK_LEAVES", 0.2);
 
         // from cheah
         config.addDefault("skills.farming.blocks.SPONGE", 1);
@@ -928,6 +928,8 @@ public class ConfigGenerator {
         config.addDefault("skills.archery.max.crossbow.QUICK_CHARGE", 5);
 
         config.addDefault("skills.trident.max.trident.CHANNELING", 1);
+
+        config.addDefault("skills.fishing.max.fishing_rod.LURE", 3);
 
         config.addDefault("skills.general.max.helmet.WATER_WORKER", 1);
 

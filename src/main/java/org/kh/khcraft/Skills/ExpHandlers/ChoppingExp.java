@@ -8,10 +8,10 @@ public class ChoppingExp extends SkillExp {
     }
 
     // child class implementation of xp curve
-    // chopping: XP = 0.5*level^2  + 12*level => level = -12 + sqrt(2) * sqrt(x+72)
+    // chopping: XP = 2*level^2  + 50*level => level = -25/2 + 1/2 sqrt(2x + 625)
     @Override
     public double getCurrentSkillLevel(double currentExp) {
-        Double exp = Math.floor(-12 + Math.sqrt(2) * Math.sqrt(currentExp + 72));
+        Double exp = Math.floor(0.5*(-25 + Math.sqrt(2*currentExp + 625)));
         if (exp < 0) {
             return 0.0;
         }
@@ -20,6 +20,6 @@ public class ChoppingExp extends SkillExp {
 
     @Override
     public double getExpRequired(double currentLevel) {
-        return 0.5*Math.pow(currentLevel, 2) + 12*currentLevel;
+        return 2*Math.pow(currentLevel, 2) + 50*currentLevel;
     }
 }

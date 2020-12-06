@@ -25,7 +25,7 @@ public abstract class SkillExp {
         System.out.printf("currentExp: %f, lvlExpRequired: %f, expDiff: %f, exp gained: %f \n", currentExp, levelExpRequired, expDifference, exp);
 
         // if the difference in exp is less than the amount we just got, then we leveled up!
-        if (expDifference < exp && expDifference >= 0.0) {
+        if (expDifference < exp) {
             if (currentLevel != 0) {
                 System.out.printf("%s levelled up their %s skill to level %d!\n", playerName, skillName, currentLevel);
                 player.sendMessage(String.format("%s levelled up to level %d!", skillName, currentLevel));
