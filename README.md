@@ -2,7 +2,7 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 68% done? 
+### Broken 💔 maybe 70% done? 
 <br>
 
 ## Still to-do (in no particular order)
