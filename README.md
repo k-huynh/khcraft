@@ -7,7 +7,6 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 
 ## Still to-do (in no particular order)
 - change loot tables
-- disable villager trading
 - custom items (resource pack)
 - commands for economy
     - /trade @to amount 'msg'
@@ -44,6 +43,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - tested selecting enchantments for mining, archery, and chopping
 - tested automatic enchanting of tools based on selecting enchantments
 - tested disabling of enchantments for tools based on skill/tool
+- right clicking villagers (with professions) do not bring up the trading gui
 
 ## Fully Completed
 - getting exp from mining
@@ -65,6 +65,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - /skills should show all your xp
 - implement auto-enchanting tools in inventory based on userenchantments
 - add a way to remove all selected enchantments for a skill/tool
+- disable villager trading
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
