@@ -659,7 +659,7 @@ public class ConfigGenerator {
         List<String> tridentTools = Arrays.asList("trident");
         List<String> combatTools = Arrays.asList("sword", "axe");
         List<String> fishingTools = Arrays.asList("fishingRod");
-        List<String> generalTools = Arrays.asList("shield", "elytra", "flint", "carrotStick", "warpedStick",
+        List<String> generalTools = Arrays.asList("shield", "elytra", "flint_and_steel", "carrot_on_a_stick", "warped_fungus_on_a_stick",
                 "helmet", "chestplate", "leggings", "boots");
 
         config.addDefault("skills.mining.equipment", miningTools);
@@ -823,9 +823,9 @@ public class ConfigGenerator {
         config.addDefault("skills.general.enchantments.shield", shieldGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.elytra", elytraGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.shears", shearsGeneralEnchantmentsList);
-        config.addDefault("skills.general.enchantments,flint", flintGeneralEnchantmentsList);
-        config.addDefault("skills.general.enchantments.carrot", carrotStickGeneralEnchantmentsList);
-        config.addDefault("skills.general.enchantments.warped", warpedStickGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments,flint_and_steel", flintGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.carrot_on_a_stick", carrotStickGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.warped_fungus_on_a_stick", warpedStickGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.helmet", helmetGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.chestplate", chestplateGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.leggings", leggingsGeneralEnchantmentsList);

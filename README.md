@@ -2,17 +2,12 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 65% done? 
+### Broken 💔 maybe 68% done? 
 <br>
 
 ## Still to-do (in no particular order)
 - change loot tables
 - custom items (resource pack)
-- commands for economy
-    - /trade @to amount 'msg'
-    - /shop (lists server store items?)
-    - /buy itemName
-    - /givekb @to amount 'msg' (server operator only)
 - custom achievements
 - cap repair costs for elytra in anvil
 - update 'help' info with skills (i.e. replace the 'todo' and stuff)
@@ -20,12 +15,16 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - rename enchantments nicely for upgrade/select without breaking everything
 - test everything properly lol
 - make /skills output look nicer
-
-## Doing
 - test that you dont get doubly awarded skill points
 - test that skill point requirements and level requirements for enchants are working correctly
-- make sure flint and steel enchantments are handled properly (the way im handling the strings probably wont work 😪)
 
+## Doing
+- make sure flint and steel, carrot and warped fungus on stick enchantments are handled properly (the way im handling the strings dont work 😪)
+- commands for economy
+    - /trade @to amount 'msg'
+    - /shop (lists server store items?)
+    - /buy itemName
+    - /givekb @to amount 'msg' (server operator only)
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
