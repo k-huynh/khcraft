@@ -115,6 +115,9 @@ public class SkillsListener implements Listener {
                     if (!silkTouchExceptions.contains(blockMaterial.toString())) {
                         exp = Double.parseDouble(miningExpMap.get(blockMaterial.toString()).toString());
                     }
+                    else {
+                        exp = 1.0;
+                    }
                 }
             }
 

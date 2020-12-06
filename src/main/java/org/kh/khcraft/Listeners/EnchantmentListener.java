@@ -21,6 +21,7 @@ import org.kh.khcraft.Khcraft;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -76,6 +77,16 @@ public class EnchantmentListener implements Listener {
         }
     }
 
+    public void removeAllEnchantmentsFromItem(ItemStack enchantedItem) {
+        // remove already applied enchants
+        Map<Enchantment, Integer> appliedEnchantments = enchantedItem.getEnchantments();
+
+        for (Map.Entry<Enchantment, Integer> entry : appliedEnchantments.entrySet()) {
+            enchantedItem.removeEnchantment(entry.getKey());
+        }
+
+    }
+
     public void setEnchantments(Player player) {
         PlayerInventory playerInventory = player.getInventory();
         ItemStack[] inventoryContents = playerInventory.getContents();
@@ -83,29 +94,33 @@ public class EnchantmentListener implements Listener {
 
         System.out.printf("Trying to setenchantment. Inventorycontents length: %d, toollist size: %d\n", inventoryContents.length, toolList.size());
 
-        // check if the inventory has any of the tools that need enchanting
-        // theres probably a better way than an O(n*m) operation here
-//        for (int i = 0; i < inventoryContents.length; i++) {
-//            for (int j = 0; j < toolList.size(); j++) {
-//                System.out.printf("Checking %s against %s\n", inventoryContents[i].getType().toString(), toolList.get(j));
-//                if (inventoryContents[i].getType().toString().toLowerCase().contains(toolList.get(j))) {
-//                    enchantTool(player.getName(), toolList.get(j), inventoryContents[i]);
-//                }
-//            }
-//        }
-
-        // iterate through items in inventory; check if the last word is inside toollist, and if so, then try enchant it
+        // iterate through items in inventory; check if the item is a tool; if so, then remove all enchants from it and
+        // then try enchant if it's part of toollist
         for (int i = 0; i < inventoryContents.length; i++) {
             if (inventoryContents[i] != null) {
                 String toolName = inventoryContents[i].getType().toString().toLowerCase();
                 String sanitisedToolName = toolName;
                 // if there's a _ in the name, then get the last 'word'; else just use the whole word
-                if (toolName.contains("_")) {
+                if (toolName.equals("flint_and_steel") || toolName.equals("carrot_on_a_stick") || toolName.equals("warped_fungus_on_a_stick")) {
+                    System.out.println("multiword tool detected!!");
+                }
+                else if (toolName.contains("_")){
                     int underscoreIndex = toolName.lastIndexOf("_");
                     sanitisedToolName = toolName.substring(underscoreIndex + 1);
                 }
+
+                System.out.printf("Considering %s (%s)\n", sanitisedToolName, toolName);
+
+                // check if it's a tool
+                if (getEnchantableToolsList().contains(sanitisedToolName)) {
+                    System.out.printf("%s is a tool! removing enchantments\n", sanitisedToolName);
+                    // remove enchants
+                    removeAllEnchantmentsFromItem(inventoryContents[i]);
+                }
+
                 // check if the tool is in toollist
                 if (toolList.contains(sanitisedToolName)) {
+                    System.out.printf("%s is in toolList! adding enchantments\n", sanitisedToolName);
                     // try enchant
                     enchantTool(player.getName(), sanitisedToolName, inventoryContents[i]);
                 }
@@ -113,6 +128,7 @@ public class EnchantmentListener implements Listener {
         }
     }
 
+    // gets tools that the player has enchants for
     public List<String> getToolList(String playerName) {
         List<String> toolList = new ArrayList<String>();
         try {
@@ -129,6 +145,15 @@ public class EnchantmentListener implements Listener {
         return toolList;
     }
 
+    // gets all possible enchantable tools
+    public List<String> getEnchantableToolsList() {
+        List<String> enchantableTools = Arrays.asList("pickaxe", "shovel", "axe", "hoe", "bow", "crossbow", "trident",
+                "sword", "fishing_rod", "shield", "elytra", "flint_and_steel", "carrot_on_a_stick", "warped_fungus_on_a_stick",
+                "helmet", "chestplate", "leggings", "boots");
+
+        return enchantableTools;
+    }
+
     public void enchantTool(String playerName, String toolName, ItemStack tool) {
         System.out.printf("attempting to enchant %s\n", tool.getType().toString());
         try {
@@ -136,11 +161,7 @@ public class EnchantmentListener implements Listener {
             ResultSet enchantments = plugin.stmt.executeQuery(String.format("SELECT EnchantmentName, EnchantmentLevel FROM UserEnchantments WHERE Username = '%s' AND Equipment = '%s' AND Enabled = 1;", playerName, toolName));
 
             // remove already applied enchants
-            Map<Enchantment, Integer> appliedEnchantments = tool.getEnchantments();
-
-            for (Map.Entry<Enchantment, Integer> entry : appliedEnchantments.entrySet()) {
-                tool.removeEnchantment(entry.getKey());
-            }
+            removeAllEnchantmentsFromItem(tool);
 
             while (enchantments.next()) {
                 // apply it to the tool

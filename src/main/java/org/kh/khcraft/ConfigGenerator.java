@@ -658,7 +658,7 @@ public class ConfigGenerator {
         List<String> archeryTools = Arrays.asList("bow", "crossbow");
         List<String> tridentTools = Arrays.asList("trident");
         List<String> combatTools = Arrays.asList("sword", "axe");
-        List<String> fishingTools = Arrays.asList("fishingRod");
+        List<String> fishingTools = Arrays.asList("fishing_rod");
         List<String> generalTools = Arrays.asList("shield", "elytra", "flint_and_steel", "carrot_on_a_stick", "warped_fungus_on_a_stick",
                 "helmet", "chestplate", "leggings", "boots");
 
@@ -819,11 +819,11 @@ public class ConfigGenerator {
         config.addDefault("skills.trident.enchantments.trident", tridentTridentEnchantmentList);
         config.addDefault("skills.archery.enchantments.bow", bowArcheryEnchantmentsList);
         config.addDefault("skills.archery.enchantments.crossbow", crossbowArcheryEnchantmentsList);
-        config.addDefault("skills.fishing.enchantments.fishingRod", fishingRodFishingEnchantmentsList);
+        config.addDefault("skills.fishing.enchantments.fishing_rod", fishingRodFishingEnchantmentsList);
         config.addDefault("skills.general.enchantments.shield", shieldGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.elytra", elytraGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.shears", shearsGeneralEnchantmentsList);
-        config.addDefault("skills.general.enchantments,flint_and_steel", flintGeneralEnchantmentsList);
+        config.addDefault("skills.general.enchantments.flint_and_steel", flintGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.carrot_on_a_stick", carrotStickGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.warped_fungus_on_a_stick", warpedStickGeneralEnchantmentsList);
         config.addDefault("skills.general.enchantments.helmet", helmetGeneralEnchantmentsList);
@@ -876,9 +876,9 @@ public class ConfigGenerator {
         config.addDefault("skills.general.incompatible.boots.2", bootsGeneralIncompatibleList2);
 
         // special enchantment/skill rules (i.e. min level requirements)
-        config.addDefault("skills.mining.requirements.pickaxe.SILK_TOUCH.level", 50);
+        config.addDefault("skills.mining.requirements.pickaxe.SILK_TOUCH.level", 25);
         config.addDefault("skills.mining.requirements.pickaxe.SILK_TOUCH.points", 2);
-        config.addDefault("skills.mining.requirements.pickaxe.LOOT_BONUS_BLOCKS.level", 35);
+        config.addDefault("skills.mining.requirements.pickaxe.LOOT_BONUS_BLOCKS.level", 25);
         config.addDefault("skills.mining.requirements.pickaxe.LOOT_BONUS_BLOCKS.points", 2);
 
         config.addDefault("skills.digging.requirements.shovel.SILK_TOUCH.level", 50);
