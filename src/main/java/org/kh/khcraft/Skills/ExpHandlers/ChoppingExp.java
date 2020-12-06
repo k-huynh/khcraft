@@ -11,7 +11,11 @@ public class ChoppingExp extends SkillExp {
     // chopping: XP = 0.5*level^2  + 12*level => level = -12 + sqrt(2) * sqrt(x+72)
     @Override
     public double getCurrentSkillLevel(double currentExp) {
-        return Math.floor(-12 + Math.sqrt(2) * Math.sqrt(currentExp + 72));
+        Double exp = Math.floor(-12 + Math.sqrt(2) * Math.sqrt(currentExp + 72));
+        if (exp < 0) {
+            return 0.0;
+        }
+        return exp;
     }
 
     @Override

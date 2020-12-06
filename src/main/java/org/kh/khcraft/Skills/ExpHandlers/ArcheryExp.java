@@ -11,7 +11,11 @@ public class ArcheryExp extends SkillExp {
     // archery: XP = level^2  + 100*level => level = -50 + sqrt(x+2500)
     @Override
     public double getCurrentSkillLevel(double currentExp) {
-        return Math.floor(-50 + Math.sqrt(currentExp + 2500));
+        Double exp = Math.floor(-50 + Math.sqrt(currentExp + 2500));
+        if (exp < 0) {
+            return 0.0;
+        }
+        return exp;
     }
 
     @Override

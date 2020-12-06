@@ -11,7 +11,11 @@ public class FarmingExp extends SkillExp {
     // farming: XP = 0.2*level^2  + 5*level => level = -12.5 + sqrt(5)/2 * sqrt(4*x + 125)
     @Override
     public double getCurrentSkillLevel(double currentExp) {
-        return Math.floor(-12.5 + Math.sqrt(5)/2 * Math.sqrt(4*currentExp + 125));
+        Double exp = Math.floor(-12.5 + Math.sqrt(5)/2 * Math.sqrt(4*currentExp + 125));
+        if (exp < 0) {
+            return 0.0;
+        }
+        return exp;
     }
 
     @Override

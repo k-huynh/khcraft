@@ -15,7 +15,7 @@ public abstract class SkillExp {
 
     public void handleSkillExp(String playerName, String skillName, double exp, Player player) {
         double currentExp = getCurrentExp(playerName, skillName);
-        double currentLevel = getCurrentSkillLevel(currentExp);
+        int currentLevel = (int) getCurrentSkillLevel(currentExp);
 
         // check if just leveled up by getting the minimum exp required for that level and comparing it against the
         // amount of exp just received
@@ -25,16 +25,18 @@ public abstract class SkillExp {
         System.out.printf("currentExp: %f, lvlExpRequired: %f, expDiff: %f, exp gained: %f \n", currentExp, levelExpRequired, expDifference, exp);
 
         // if the difference in exp is less than the amount we just got, then we leveled up!
-        if (expDifference <= exp && expDifference >= 0.0) {
-            System.out.printf("%s levelled up their %s skill to level %f!\n", playerName, skillName, currentLevel);
-            player.sendMessage(String.format("%s levelled up to level %d!", skillName, (int) currentLevel));
-            // award a skill point if the level is divisible by 5
-            if (currentLevel % 5 == 0 && currentLevel != 0) {
-                try {
-                    plugin.stmt.executeUpdate(String.format("UPDATE UserSkills SET AvailablePoints = AvailablePoints + 1 WHERE Username = '%s' AND SkillName = '%s';", playerName, skillName));
-                    player.sendMessage(String.format("You have been granted 1 additional skill point for %s!", skillName));
-                } catch (SQLException e) {
-                    e.printStackTrace();
+        if (expDifference < exp && expDifference >= 0.0) {
+            if (currentLevel != 0) {
+                System.out.printf("%s levelled up their %s skill to level %d!\n", playerName, skillName, currentLevel);
+                player.sendMessage(String.format("%s levelled up to level %d!", skillName, currentLevel));
+                // award a skill point if the level is divisible by 5
+                if (currentLevel % 5 == 0) {
+                    try {
+                        plugin.stmt.executeUpdate(String.format("UPDATE UserSkills SET AvailablePoints = AvailablePoints + 1 WHERE Username = '%s' AND SkillName = '%s';", playerName, skillName));
+                        player.sendMessage(String.format("You have been granted 1 additional skill point for %s!", skillName));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

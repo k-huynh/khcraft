@@ -36,7 +36,7 @@ public class SkillsCommand implements CommandExecutor {
 
                 while (userSkillRS.next()) {
                     // get current xp and available points for this skill
-                    int currentXP = userSkillRS.getInt(1);
+                    double currentXP = userSkillRS.getDouble(1);
                     int availablePoints = userSkillRS.getInt(2);
                     String skillName = userSkillRS.getString(3);
 
@@ -81,7 +81,10 @@ public class SkillsCommand implements CommandExecutor {
                     // get xp required for next level
                     double requiredXP = skillExp.getExpRequired(currentLevel + 1);
 
-                    sendStr = sendStr + String.format("%s | Level: %4d, XP: %.1f/%.1f, Available Points: %d\n", skillName, (int) currentLevel, currentXP - requiredXPCurrent, requiredXP, availablePoints);
+                    // get xp required to next level
+                    double requiredXPToNext = requiredXP - requiredXPCurrent;
+
+                    sendStr = sendStr + String.format("%s | Level: %4d, XP: %.1f/%.1f, Available Points: %d\n", skillName, (int) currentLevel, currentXP - requiredXPCurrent, requiredXPToNext, availablePoints);
 
                 }
 

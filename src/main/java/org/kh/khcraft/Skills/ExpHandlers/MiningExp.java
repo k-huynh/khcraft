@@ -11,7 +11,11 @@ public class MiningExp extends SkillExp {
     // mining: XP = 20*level^2 + 500*level => level = -12.5 + (sqrt(x+3125))/(2*sqrt(5))
     @Override
     public double getCurrentSkillLevel(double currentExp) {
-        return Math.floor(-12.5 + (Math.sqrt(currentExp + 3125))/(2 * Math.sqrt(5)));
+        Double exp = Math.floor(-12.5 + (Math.sqrt(currentExp + 3125))/(2 * Math.sqrt(5)));
+        if (exp < 0) {
+            return 0.0;
+        }
+        return exp;
     }
 
     @Override

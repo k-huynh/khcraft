@@ -156,7 +156,7 @@ public abstract class SkillCommands implements TabExecutor {
 
     public void enableEnchants(String playerName, String skillName, String toolName, String enchantmentName, int enchantmentLevel) {
         // disable all entries (all levels) of this enchantment in userenchantments first, then enabled to 1
-        System.out.printf("trying to enable %s %d in db \n", enchantmentName, enchantmentLevel);
+//        System.out.printf("trying to enable %s %d in db \n", enchantmentName, enchantmentLevel);
         try {
             disableEnchant(playerName, skillName, toolName, enchantmentName);
             plugin.stmt.executeUpdate(String.format("UPDATE UserEnchantments SET Enabled = 1 WHERE Username = '%s' AND SkillName = '%s' AND Equipment = '%s' AND EnchantmentName = '%s' AND EnchantmentLevel = '%d';",
@@ -178,7 +178,7 @@ public abstract class SkillCommands implements TabExecutor {
 
                 while (incompatibleRS.next()) {
                     if (incompatibleRS.getInt(1) == 1) {
-                        System.out.printf("%s is incompatible; disabling\n", incompatibleEnchantments.get(i));
+//                        System.out.printf("%s is incompatible; disabling\n", incompatibleEnchantments.get(i));
                         disableEnchant(playerName, skillName, toolName, incompatibleEnchantments.get(i));
                     }
                 }

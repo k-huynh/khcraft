@@ -11,7 +11,11 @@ public class FishingExp extends SkillExp {
     // fishing: XP = 10*level => level = x/10
     @Override
     public double getCurrentSkillLevel(double currentExp) {
-        return Math.floor(currentExp/10.0);
+        Double exp = Math.floor(currentExp/10.0);
+        if (exp < 0) {
+            return 0.0;
+        }
+        return exp;
     }
 
     @Override

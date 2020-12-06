@@ -11,7 +11,11 @@ public class TridentExp extends SkillExp {
     // trident: XP = 0.2*level^2  + 25*level => level = -125/2 + sqrt(5)/2 * sqrt(4x+3125)
     @Override
     public double getCurrentSkillLevel(double currentExp) {
-        return Math.floor(-125.0/2 + Math.sqrt(5)/2 * Math.sqrt(4*currentExp + 3125));
+        Double exp = Math.floor(-125.0/2 + Math.sqrt(5)/2 * Math.sqrt(4*currentExp + 3125));
+        if (exp < 0) {
+            return 0.0;
+        }
+        return exp;
     }
 
     @Override

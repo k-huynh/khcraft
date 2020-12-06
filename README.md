@@ -18,7 +18,6 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - test that skill point requirements and level requirements for enchants are working correctly
 
 ## Doing
-- test that you dont get doubly awarded skill points
 - commands for economy
     - /trade @to amount 'msg'
     - /shop (lists server store items?)
@@ -43,6 +42,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - tested disabling of enchantments for tools based on skill/tool
 - right clicking villagers (with professions) do not bring up the trading gui
 - tested enchanting flint and steel, and warped fungus on a stick
+- /skills display correctly displays xp and current level
+- skill exp no longer double counting level ups (and hence skill point awarding) (i think)
 
 ## Fully Completed
 - getting exp from mining
@@ -66,6 +67,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - add a way to remove all selected enchantments for a skill/tool
 - disable villager trading
 - make sure flint and steel, carrot and warped fungus on stick enchantments are handled properly 
+- test that you dont get doubly awarded skill points
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
@@ -81,3 +83,4 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 # Notes
 - did not do any further testing for exp level up events
 - POTENTIAL ISSUE: due to floating point operations, there may be inaccuracies with calculating level up bounds. Most of these should be within +/- 1 exp event but i haven't tested nor verified the logic to be 100% correct. Worst case scenarios: not recognising level up resulting in missed skill point awards, or doubly recognising a level up resulting in double skill point awards
+- note: will not count if you skip multiples of 5 levels towards giving skill points :(
