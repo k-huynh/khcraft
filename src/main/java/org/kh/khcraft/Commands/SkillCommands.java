@@ -45,7 +45,7 @@ public abstract class SkillCommands implements TabExecutor {
                         enableEnchants(player.getName(), command.getName(), toolName, enchantmentName, enchantmentLevel);
 
                         // call EnchantmentAppliedEvent so tools in inventory will be updated with selected enchantments
-                        EnchantmentAppliedEvent enchantmentAppliedEvent = new EnchantmentAppliedEvent(sender.getName());
+                        EnchantmentAppliedEvent enchantmentAppliedEvent = new EnchantmentAppliedEvent(sender.getName(), player);
                         Bukkit.getPluginManager().callEvent(enchantmentAppliedEvent);
 
                         // tell the sender that the enchantment was applied
@@ -142,6 +142,7 @@ public abstract class SkillCommands implements TabExecutor {
 
     public void enableEnchants(String playerName, String skillName, String toolName, String enchantmentName, int enchantmentLevel) {
         // disable all entries (all levels) of this enchantment in userenchantments first, then enabled to 1
+        System.out.printf("trying to enable %s %d in db \n", enchantmentName, enchantmentLevel);
         try {
             disableEnchant(playerName, skillName, toolName, enchantmentName);
             plugin.stmt.executeUpdate(String.format("UPDATE UserEnchantments SET Enabled = 1 WHERE Username = '%s' AND SkillName = '%s' AND Equipment = '%s' AND EnchantmentName = '%s' AND EnchantmentLevel = '%d';",
@@ -161,11 +162,12 @@ public abstract class SkillCommands implements TabExecutor {
                 ResultSet incompatibleRS = plugin.stmt.executeQuery(String.format("SELECT Enabled FROM UserEnchantments WHERE Username = '%s' AND SkillName = '%s' AND Equipment = '%s' AND EnchantmentName = '%s';",
                         playerName, skillName, toolName, incompatibleEnchantments.get(i)));
 
-                incompatibleRS.next();
-                if (incompatibleRS.getInt(1) == 1) {
-                    disableEnchant(playerName, skillName, toolName, enchantmentName);
+                while (incompatibleRS.next()) {
+                    if (incompatibleRS.getInt(1) == 1) {
+                        System.out.printf("%s is incompatible; disabling\n", incompatibleEnchantments.get(i));
+                        disableEnchant(playerName, skillName, toolName, incompatibleEnchantments.get(i));
+                    }
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }

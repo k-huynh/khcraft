@@ -673,6 +673,45 @@ public class ConfigGenerator {
         config.addDefault("skills.general.equipment", generalTools);
 
         /*
+         * enchantment name to vanilla name
+         */
+        config.addDefault("skills.enchantments.DURABILITY", "Unbreaking");
+        config.addDefault("skills.enchantments.DIG_SPEED", "Efficiency");
+        config.addDefault("skills.enchantments.SILK_TOUCH", "Silk Touch");
+        config.addDefault("skills.enchantments.LOOT_BONUS_BLOCKS", "Fortune");
+        config.addDefault("skills.enchantments.DAMAGE_ARTHROPODS", "Bane of Arthropods");
+        config.addDefault("skills.enchantments.DAMAGE_ALL", "Sharpness");
+        config.addDefault("skills.enchantments.DAMAGE_UNDEAD", "Smite");
+        config.addDefault("skills.enchantments.FIRE_ASPECT", "Fire Aspect");
+        config.addDefault("skills.enchantments.KNOCKBACK", "Knockback");
+        config.addDefault("skills.enchantments.LOOT_BONUS_MOBS", "Looting");
+        config.addDefault("skills.enchantments.SWEEPING_EDGE", "Sweeping Edge");
+        config.addDefault("skills.enchantments.CHANNELING", "Channeling");
+        config.addDefault("skills.enchantments.IMPALING", "Impaling");
+        config.addDefault("skills.enchantments.LOYALTY", "Loyalty");
+        config.addDefault("skills.enchantments.RIPTIDE", "Riptide");
+        config.addDefault("skills.enchantments.ARROW_FIRE", "Flame");
+        config.addDefault("skills.enchantments.ARROW_KNOCKBACK", "Punch");
+        config.addDefault("skills.enchantments.ARROW_DAMAGE", "Power");
+        config.addDefault("skills.enchantments.ARROW_INFINITE", "Infinity");
+        config.addDefault("skills.enchantments.QUICK_CHARGE", "Quick Charge");
+        config.addDefault("skills.enchantments.MULTISHOT", "Multishot");
+        config.addDefault("skills.enchantments.PIERCING", "Piercing");
+        config.addDefault("skills.enchantments.LUCK", "Luck of the Sea");
+        config.addDefault("skills.enchantments.LURE", "Lure");
+        config.addDefault("skills.enchantments.PROTECTION_EXPLOSIONS", "Blast Protection");
+        config.addDefault("skills.enchantments.PROTECTION_FIRE", "Fire Protection");
+        config.addDefault("skills.enchantments.PROTECTION_PROJECTILE", "Projectile Protection");
+        config.addDefault("skills.enchantments.PROTECTION_ENVIRONMENTAL", "Protection");
+        config.addDefault("skills.enchantments.THORNS", "Thorns");
+        config.addDefault("skills.enchantments.WATER_WORKER", "Aqua Affinity");
+        config.addDefault("skills.enchantments.OXYGEN", "Respiration");
+        config.addDefault("skills.enchantments.DEPTH_STRIDER", "Depth Strider");
+        config.addDefault("skills.enchantments.PROTECTION_FALL", "Feather Falling");
+        config.addDefault("skills.enchantments.FROST_WALKER", "Frost Walker");
+        config.addDefault("skills.enchantments.SOUL_SPEED", "Soul Speed");
+
+        /*
          * enchantments by tool by skill
          */
         List<String> pickaxeMiningEnchantmentsList = Arrays.asList("DURABILITY",

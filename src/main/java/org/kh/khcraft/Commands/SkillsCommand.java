@@ -70,7 +70,6 @@ public class SkillsCommand implements CommandExecutor {
                         case("GENERAL"):
                             sendStr = sendStr + String.format("GENERAL | Available Points: %d\n", availablePoints);
                             continue;
-
                     }
 
                     // get current level

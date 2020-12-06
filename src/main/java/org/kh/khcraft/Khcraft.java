@@ -1,8 +1,10 @@
 package org.kh.khcraft;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kh.khcraft.Commands.*;
+import org.kh.khcraft.Listeners.EnchantmentListener;
 import org.kh.khcraft.Listeners.HoverListener;
 import org.kh.khcraft.Listeners.SkillExpListener;
 import org.kh.khcraft.Listeners.SkillsListener;
@@ -34,6 +36,7 @@ public final class Khcraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HoverListener(), this);
         getServer().getPluginManager().registerEvents(new SkillsListener(this), this);
         getServer().getPluginManager().registerEvents(new SkillExpListener(this), this);
+        getServer().getPluginManager().registerEvents(new EnchantmentListener(this), this);
 
         // register commands
         this.getCommand("mining").setExecutor(new MiningCommand(this));
