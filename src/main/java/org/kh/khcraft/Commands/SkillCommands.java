@@ -100,6 +100,20 @@ public abstract class SkillCommands implements TabExecutor {
                         }
                     }
                 }
+                else if (args[0].equalsIgnoreCase("disable")) {
+                    // 'disable' and tool specified (and skill)
+                    if (args.length == 2) {
+                        disableAllEnchants(player.getName(), command.getName(), args[1]);
+
+                        // call EnchantmentAppliedEvent so tools in inventory will be updated with selected enchantments
+                        EnchantmentAppliedEvent enchantmentAppliedEvent = new EnchantmentAppliedEvent(sender.getName(), player);
+                        Bukkit.getPluginManager().callEvent(enchantmentAppliedEvent);
+
+                        // tell the sender that the enchantment was applied
+                        sender.sendMessage(String.format("Enchantments for %s disabled successfully!", args[1]));
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -111,7 +125,7 @@ public abstract class SkillCommands implements TabExecutor {
             Player player = (Player) sender;
             // selecting between select or upgrade
             if (args.length == 1) {
-                List<String> skillOptions = Arrays.asList("select", "upgrade");
+                List<String> skillOptions = Arrays.asList("select", "upgrade", "disable");
 
                 return skillOptions;
             }
@@ -182,6 +196,27 @@ public abstract class SkillCommands implements TabExecutor {
                         playerName, skillName, toolName, enchantmentName));
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void disableAllEnchants(String playerName, String skillName, String toolName) {
+        // get selected enchants
+        List<String> selectedEnchants = new ArrayList<String>();
+        try {
+            ResultSet selectedEnchantsRS = plugin.stmt.executeQuery(String.format("SELECT EnchantmentName FROM UserEnchantments WHERE Username = '%s' AND SkillName = '%s' AND Equipment = '%s' AND Enabled = 1;",
+                    playerName, skillName, toolName));
+
+            while (selectedEnchantsRS.next()) {
+                selectedEnchants.add(selectedEnchantsRS.getString(1));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // remove each one
+        for (int i = 0; i < selectedEnchants.size(); i++) {
+            disableEnchant(playerName, skillName, toolName, selectedEnchants.get(i));
         }
     }
 
@@ -426,6 +461,15 @@ public abstract class SkillCommands implements TabExecutor {
 
     public List<String> getSkillTools(String skillName) {
         return config.getStringList(String.format("skills.%s.equipment", skillName.toLowerCase()));
+    }
+
+    public List<String> getVanillaNames(List<String> enchantmentList) {
+        List<String> vanillaNames = new ArrayList<String>();
+        for (int i = 0; i < enchantmentList.size(); i++) {
+            vanillaNames.add(config.getString(String.format("skills.enchantments.%s", enchantmentList.get(i))));
+        }
+
+        return vanillaNames;
     }
 
     public abstract List<String> getIncompatibleEnchantments(String toolName, String enchantmentName);

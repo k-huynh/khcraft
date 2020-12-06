@@ -2,7 +2,7 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 55% done? 
+### Broken 💔 maybe 65% done? 
 <br>
 
 ## Still to-do (in no particular order)
@@ -15,12 +15,18 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
     - /buy itemName
     - /givekb @to amount 'msg' (server operator only)
 - custom achievements
-- cap repair costs for elytra/tridents in anvil
+- cap repair costs for elytra in anvil
 - update 'help' info with skills (i.e. replace the 'todo' and stuff)
+- make EnchantmentListener less computationally intensive -- i.e. dont check every item every time
+- rename enchantments nicely for upgrade/select without breaking everything
+- test everything properly lol
+- make /skills output look nicer
 
 ## Doing
-- implement auto-enchanting tools in inventory based on userenchantments
-- rename enchantments nicely for upgrade/select
+- test that you dont get doubly awarded skill points
+- test that skill point requirements and level requirements for enchants are working correctly
+- make sure flint and steel enchantments are handled properly (the way im handling the strings probably wont work 😪)
+
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
@@ -36,6 +42,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - tested trident exp (lvl 0 --> 1) recognised level up, (lvl 4 --> 5) = +1 available skill point
 - tested upgrading enchantments for mining, archery, and chopping
 - tested selecting enchantments for mining, archery, and chopping
+- tested automatic enchanting of tools based on selecting enchantments
+- tested disabling of enchantments for tools based on skill/tool
 
 ## Fully Completed
 - getting exp from mining
@@ -55,6 +63,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - implement method to upgrade enchantments (from available enchantments)
 - Should notify on skill level up
 - /skills should show all your xp
+- implement auto-enchanting tools in inventory based on userenchantments
+- add a way to remove all selected enchantments for a skill/tool
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'

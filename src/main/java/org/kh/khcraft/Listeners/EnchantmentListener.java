@@ -116,7 +116,7 @@ public class EnchantmentListener implements Listener {
     public List<String> getToolList(String playerName) {
         List<String> toolList = new ArrayList<String>();
         try {
-            ResultSet enchantedToolsRS = plugin.stmt.executeQuery(String.format("SELECT DISTINCT Equipment FROM UserEnchantments WHERE Username = '%s' AND Enabled = 1", playerName));
+            ResultSet enchantedToolsRS = plugin.stmt.executeQuery(String.format("SELECT DISTINCT Equipment FROM UserEnchantments WHERE Username = '%s'", playerName));
 
             // get list of tools that need enchanting enabled for this player from the database
             while (enchantedToolsRS.next()) {
