@@ -1,13 +1,11 @@
 package org.kh.khcraft;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.kh.khcraft.Commands.*;
+import org.kh.khcraft.Commands.Economy.TradeCommand;
+import org.kh.khcraft.Commands.Skills.*;
 import org.kh.khcraft.Listeners.*;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -48,6 +46,8 @@ public final class Khcraft extends JavaPlugin {
         this.getCommand("general").setExecutor(new GeneralCommand(this));
 
         this.getCommand("skills").setExecutor(new SkillsCommand(this));
+
+        this.getCommand("trade").setExecutor(new TradeCommand(this));
 
 
     }

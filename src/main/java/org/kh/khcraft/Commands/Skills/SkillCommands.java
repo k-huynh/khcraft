@@ -1,4 +1,4 @@
-package org.kh.khcraft.Commands;
+package org.kh.khcraft.Commands.Skills;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -149,9 +149,8 @@ public abstract class SkillCommands implements TabExecutor {
                 }
             }
         }
-
-
-        return null;
+        // if not one of the above options, then return an empty arraylist
+        return new ArrayList<String>();
     }
 
     public void enableEnchants(String playerName, String skillName, String toolName, String enchantmentName, int enchantmentLevel) {

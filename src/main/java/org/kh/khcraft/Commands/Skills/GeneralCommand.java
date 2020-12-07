@@ -1,4 +1,4 @@
-package org.kh.khcraft.Commands;
+package org.kh.khcraft.Commands.Skills;
 
 import org.bukkit.command.TabExecutor;
 import org.kh.khcraft.Khcraft;

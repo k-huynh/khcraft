@@ -85,6 +85,7 @@ public class DatabaseHandler {
                     + "ToUsername VARCHAR(45) NOT NULL,"
                     + "KB INT NOT NULL,"
                     + "Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+                    + "Message VARCHAR(100),"
                     + "FOREIGN KEY (FromUsername) REFERENCES Users(Username),"
                     + "FOREIGN KEY (ToUsername) REFERENCES Users(Username),"
                     + "PRIMARY KEY (TransactionID));";

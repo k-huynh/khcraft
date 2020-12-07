@@ -1,8 +1,9 @@
-package org.kh.khcraft.Commands;
+package org.kh.khcraft.Commands.Skills;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.kh.khcraft.Khcraft;
@@ -10,9 +11,10 @@ import org.kh.khcraft.Skills.ExpHandlers.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class SkillsCommand implements CommandExecutor {
+public class SkillsCommand implements TabExecutor {
     Khcraft plugin;
     FileConfiguration config;
 
@@ -98,5 +100,11 @@ public class SkillsCommand implements CommandExecutor {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        // no tab completion necessary so return an empty arraylist
+        return new ArrayList<String>();
     }
 }

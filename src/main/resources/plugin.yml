@@ -34,3 +34,6 @@ commands:
   skills:
     description: todo
     usage: todo
+  trade:
+    description: todo
+    usage: todo
