@@ -35,20 +35,25 @@ public class HoverListener implements Listener {
         // get list of base items from config
         List<String> baseItems = config.getStringList("items.vanillaBase");
 
-        if (baseItems.contains(event.getItem().getType().toString())) {
-            event.setCancelled(true);
+        if (event.getItem() != null) {
+            if (baseItems.contains(event.getItem().getType().toString())) {
+                event.setCancelled(true);
+            }
         }
+
     }
 
     @EventHandler
     public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) throws IOException {
         ItemStack offItem = event.getOffHandItem();
-        if (checkOffHand(offItem) && elytraEquipped(event.getPlayer())) {
-            System.out.printf("Offhand %s; true\n", offItem.getType());
-            setHover(event.getPlayer(), true);
-        } else {
-            System.out.printf("Offhand %s; false\n", offItem.getType());
-            setHover(event.getPlayer(), false);
+        if (offItem != null) {
+            if (checkOffHand(offItem) && elytraEquipped(event.getPlayer())) {
+                System.out.printf("Offhand %s; true\n", offItem.getType());
+                setHover(event.getPlayer(), true);
+            } else {
+                System.out.printf("Offhand %s; false\n", offItem.getType());
+                setHover(event.getPlayer(), false);
+            }
         }
     }
 
@@ -62,13 +67,16 @@ public class HoverListener implements Listener {
             Player player = (Player)humanPlayer;
             ItemStack offItem = playerInventory.getItemInOffHand();
 
-            if (checkOffHand(offItem) && elytraEquipped(player)) {
-                System.out.printf("Invent click; offhand %s; true\n", offItem.getType());
-                setHover(player, true);
-            } else {
-                System.out.printf("invent click; offhand: %s; false\n", offItem.getType());
-                setHover(player, false);
+            if (offItem != null) {
+                if (checkOffHand(offItem) && elytraEquipped(player)) {
+                    System.out.printf("Invent click; offhand %s; true\n", offItem.getType());
+                    setHover(player, true);
+                } else {
+                    System.out.printf("invent click; offhand: %s; false\n", offItem.getType());
+                    setHover(player, false);
+                }
             }
+
         }
     }
 
@@ -83,12 +91,14 @@ public class HoverListener implements Listener {
 
             ItemStack offItem = playerInventory.getItemInOffHand();
 
-            if (checkOffHand(offItem) && elytraEquipped(player)) {
-                System.out.printf("Invent close; offhand %s; true\n", offItem.getType());
-                setHover(player, true);
-            } else {
-                System.out.printf("invent close; offhand: %s; false\n", offItem.getType());
-                setHover(player, false);
+            if (offItem != null) {
+                if (checkOffHand(offItem) && elytraEquipped(player)) {
+                    System.out.printf("Invent close; offhand %s; true\n", offItem.getType());
+                    setHover(player, true);
+                } else {
+                    System.out.printf("invent close; offhand: %s; false\n", offItem.getType());
+                    setHover(player, false);
+                }
             }
         }
     }
@@ -100,12 +110,14 @@ public class HoverListener implements Listener {
 
         ItemStack offItem = playerInventory.getItemInOffHand();
 
-        if (checkOffHand(offItem) && elytraEquipped(player)) {
-            System.out.printf("player join; offhand %s; true\n", offItem.getType());
-            setHover(player, true);
-        } else {
-            System.out.printf("player join; offhand: %s; false\n", offItem.getType());
-            setHover(player, false);
+        if (offItem != null) {
+            if (checkOffHand(offItem) && elytraEquipped(player)) {
+                System.out.printf("player join; offhand %s; true\n", offItem.getType());
+                setHover(player, true);
+            } else {
+                System.out.printf("player join; offhand: %s; false\n", offItem.getType());
+                setHover(player, false);
+            }
         }
     }
 

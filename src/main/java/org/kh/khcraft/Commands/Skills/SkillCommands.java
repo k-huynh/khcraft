@@ -43,15 +43,22 @@ public abstract class SkillCommands implements TabExecutor {
                         }
 
                         // enable enchants in db
-                        enableEnchants(player.getName(), command.getName(), toolName, enchantmentName, enchantmentLevel);
+                        if (enableEnchants(player.getName(), command.getName(), toolName, enchantmentName, enchantmentLevel)) {
+                            // call EnchantmentAppliedEvent so tools in inventory will be updated with selected enchantments
+                            EnchantmentAppliedEvent enchantmentAppliedEvent = new EnchantmentAppliedEvent(sender.getName(), player);
+                            Bukkit.getPluginManager().callEvent(enchantmentAppliedEvent);
 
-                        // call EnchantmentAppliedEvent so tools in inventory will be updated with selected enchantments
-                        EnchantmentAppliedEvent enchantmentAppliedEvent = new EnchantmentAppliedEvent(sender.getName(), player);
-                        Bukkit.getPluginManager().callEvent(enchantmentAppliedEvent);
+                            // tell the sender that the enchantment was applied
+                            sender.sendMessage(String.format("%s applied to %s successfully!", enchantmentName, toolName));
+                        }
+                        else {
+                            sender.sendMessage(String.format("Unable to enchant %s with %s :(\n", toolName, enchantmentName));
 
-                        // tell the sender that the enchantment was applied
-                        sender.sendMessage(String.format("%s applied to %s successfully!", enchantmentName, toolName));
+                        }
+
+
                         return true;
+
                     }
                 }
                 else if (args[0].equalsIgnoreCase("upgrade")) {
@@ -154,16 +161,26 @@ public abstract class SkillCommands implements TabExecutor {
         return new ArrayList<String>();
     }
 
-    public void enableEnchants(String playerName, String skillName, String toolName, String enchantmentName, int enchantmentLevel) {
+    public boolean enableEnchants(String playerName, String skillName, String toolName, String enchantmentName, int enchantmentLevel) {
         // disable all entries (all levels) of this enchantment in userenchantments first, then enabled to 1
 //        System.out.printf("trying to enable %s %d in db \n", enchantmentName, enchantmentLevel);
+        // check if the player has upgraded this enchantment yet
+
         try {
-            disableEnchant(playerName, skillName, toolName, enchantmentName);
-            plugin.stmt.executeUpdate(String.format("UPDATE UserEnchantments SET Enabled = 1 WHERE Username = '%s' AND SkillName = '%s' AND Equipment = '%s' AND EnchantmentName = '%s' AND EnchantmentLevel = '%d';",
+            ResultSet enabledRS = plugin.stmt.executeQuery(String.format("SELECT * FROM UserEnchantments WHERE Username = '%s' AND SkillName = '%s' AND Equipment = '%s' AND EnchantmentName = '%s' AND EnchantmentLevel = '%s';",
                     playerName, skillName, toolName, enchantmentName, enchantmentLevel));
 
+            if (enabledRS.next()) {
+                disableEnchant(playerName, skillName, toolName, enchantmentName);
+                plugin.stmt.executeUpdate(String.format("UPDATE UserEnchantments SET Enabled = 1 WHERE Username = '%s' AND SkillName = '%s' AND Equipment = '%s' AND EnchantmentName = '%s' AND EnchantmentLevel = '%d';",
+                        playerName, skillName, toolName, enchantmentName, enchantmentLevel));
+            }
+            else {
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
 
         // get any non-compatible enchantments from config
@@ -180,12 +197,14 @@ public abstract class SkillCommands implements TabExecutor {
                     if (incompatibleRS.getInt(1) == 1) {
 //                        System.out.printf("%s is incompatible; disabling\n", incompatibleEnchantments.get(i));
                         disableEnchant(playerName, skillName, toolName, incompatibleEnchantments.get(i));
+                        return true;
                     }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+        return true;
 
     }
 

@@ -40,3 +40,6 @@ commands:
   balance:
     description: todo
     usage: todo
+  shop:
+    description: todo
+    usage: todo

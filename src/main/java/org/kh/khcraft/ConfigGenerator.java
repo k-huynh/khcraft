@@ -944,9 +944,10 @@ public class ConfigGenerator {
 
         config.addDefault("items.vanillaBase", vanillaBaseList);
 
-        // custom item requirements
+        // custom item details
         config.addDefault("items.HOVER_ITEM.cost", 20000);
         config.addDefault("items.HOVER_ITEM.vanillaBase", "BEE_SPAWN_EGG");
+        config.addDefault("items.HOVER_ITEM.name", "Red Bull");
 
         config.options().copyDefaults(true);
         plugin.saveConfig();

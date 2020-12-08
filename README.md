@@ -18,7 +18,6 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 
 ## Doing
 - commands for economy
-    - /shop (lists server store items?)
     - /buy itemName (for custom items)
 
 ## Tested as working
@@ -45,6 +44,9 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - /trade @to {amount} {message (optional)} works
 - /skills output is now aligned better (although it still kinda sucks sorry)
 - /balance {optional: playername} works
+- can only use the hover item with elytra equipped
+- can only hover if the specified hover item is in offhand
+- /shop lists custom items specified in config
 
 ## Fully Completed
 - getting exp from mining
@@ -72,6 +74,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - trading KB and logging the transaction
 - make /skills output look nicer (a little lol)
 - /balance (gives you your KB balance) (should also be able to show other players balances)
+- /shop (lists server store items?)
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
@@ -92,3 +95,4 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - note: will not count if you skip multiples of 5 levels towards giving skill points :(
 - removed level requirements for general enchantments (since there isnt really a notion of 'levels' (yet) for general skills)
 - NOTE: partial issue regarding resultset queries when checking for incompatible enchantments; not sure if it poses any functional risks though
+- realistically i should be creating wrapper classes for stuff like enchantments and custom items but im lazy :) maybe one day i'll do it
