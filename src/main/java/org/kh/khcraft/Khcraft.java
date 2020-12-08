@@ -2,6 +2,7 @@ package org.kh.khcraft;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kh.khcraft.Commands.Economy.BalanceCommand;
+import org.kh.khcraft.Commands.Economy.BuyCommand;
 import org.kh.khcraft.Commands.Economy.ShopCommand;
 import org.kh.khcraft.Commands.Economy.TradeCommand;
 import org.kh.khcraft.Commands.Skills.*;
@@ -52,6 +53,7 @@ public final class Khcraft extends JavaPlugin {
         this.getCommand("trade").setExecutor(new TradeCommand(this));
         this.getCommand("balance").setExecutor(new BalanceCommand(this));
         this.getCommand("shop").setExecutor(new ShopCommand(this));
+        this.getCommand("buy").setExecutor(new BuyCommand(this));
 
 
     }

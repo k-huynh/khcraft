@@ -43,3 +43,6 @@ commands:
   shop:
     description: todo
     usage: todo
+  buy:
+    description: todo
+    usage: todo

@@ -940,16 +940,16 @@ public class ConfigGenerator {
         config.addDefault("items.customItems", customItemsList);
 
         // list of vanilla base items
-        List<String> vanillaBaseList = Arrays.asList("BEE_SPAWN_EGG");
+        List<String> vanillaBaseList = Arrays.asList("IRON_NUGGET");
 
         config.addDefault("items.vanillaBase", vanillaBaseList);
 
         // custom item details
         config.addDefault("items.HOVER_ITEM.cost", 20000);
-        config.addDefault("items.HOVER_ITEM.vanillaBase", "BEE_SPAWN_EGG");
+        config.addDefault("items.HOVER_ITEM.vanillaBase", "IRON_NUGGET");
         config.addDefault("items.HOVER_ITEM.name", "Red Bull");
 
-        List<String> hoverDescription = Arrays.asList("Grants the power of creative flight, as long as it is equipped in your off-hand, and you have an elytra on!");
+        List<String> hoverDescription = Arrays.asList("Grants hover, if equipped", "in off-hand, and you", "have an elytra on!");
         config.addDefault("items.HOVER_ITEM.description", hoverDescription);
 
         config.options().copyDefaults(true);

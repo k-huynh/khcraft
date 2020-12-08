@@ -7,7 +7,6 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 
 ## Still to-do (in no particular order)
 - change loot tables
-- custom items (resource pack)
 - custom achievements
 - cap repair costs for elytra in anvil
 - update 'help' info with skills (i.e. replace the 'todo' and stuff)
@@ -17,8 +16,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - add more meaningful console logs
 
 ## Doing
-- commands for economy
-    - /buy itemName (for custom items)
+- custom items (resource pack)
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
@@ -47,6 +45,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - can only use the hover item with elytra equipped
 - can only hover if the specified hover item is in offhand
 - /shop lists custom items specified in config
+- /buy correctly gives custom item
 
 ## Fully Completed
 - getting exp from mining
@@ -75,6 +74,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - make /skills output look nicer (a little lol)
 - /balance (gives you your KB balance) (should also be able to show other players balances)
 - /shop (lists server store items?)
+- /buy itemName (for custom items)
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'

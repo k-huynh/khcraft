@@ -1,6 +1,7 @@
 package org.kh.khcraft.Commands.Economy;
 
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -45,10 +46,15 @@ public class BuyCommand implements TabExecutor {
             if (args.length > 0) {
                 String itemName = "";
                 for (int i = 0; i < args.length; i++) {
-                    itemName = itemName + args[i];
+                    itemName = itemName + args[i] + " ";
                 }
 
+                // remove trailing space
+                itemName = itemName.substring(0, itemName.length() - 1);
+
                 // check if item name is legit
+                System.out.printf("Trying to buy %s.\n", itemName);
+
                 if (itemNameList.contains(itemName)) {
                     // get custom item (not display name). note that the index in itemList should match the index in itemNameList
                     String item = itemList.get(itemNameList.indexOf(itemName));
@@ -69,7 +75,6 @@ public class BuyCommand implements TabExecutor {
                         ItemMeta meta = customItem.getItemMeta();
                         meta.setDisplayName(config.getString(String.format("items.%s.name", item)));
                         meta.setLore(config.getStringList(String.format("items.%s.description", item)));
-
                         customItem.setItemMeta(meta);
 
                         // try give player the item
@@ -78,21 +83,29 @@ public class BuyCommand implements TabExecutor {
                         // success!
                         if (map.isEmpty()) {
                             // remove the money from their account
+                            try {
+                                plugin.stmt.executeUpdate(String.format("UPDATE Users SET KB = KB - %f WHERE Username = '%s';", price, player.getName()));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+
+                            sender.sendMessage(String.format("%s purchased for %.2f", itemName, price));
 
                         }
                         // no room :(
                         else {
-
+                            sender.sendMessage("No space in inventory :(");
                         }
-
-
-
+                        return true;
                     }
                     else {
                         sender.sendMessage("Insufficient funds! :(");
                         return true;
                     }
-
+                }
+                else {
+                    sender.sendMessage("Item not found! :(");
+                    return true;
                 }
             }
             else {
