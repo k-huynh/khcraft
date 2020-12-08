@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.kh.khcraft.Events.EnchantmentAppliedEvent;
 import org.kh.khcraft.Khcraft;
-import org.kh.khcraft.Skills.ExpHandlers.MiningExp;
+import org.kh.khcraft.Skills.ExpHandlers.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -424,18 +424,47 @@ public abstract class SkillCommands implements TabExecutor {
                 e.printStackTrace();
             }
 
+            SkillExp skillExp = null;
 
-
-            MiningExp miningExp = new MiningExp(plugin);
-            double currentLevel = miningExp.getCurrentSkillLevel(currentXP);
-
-            System.out.println("currentlevel: " + currentLevel);
-
-            // if our skill level exceeds the minimum level, and our available skill points exceeds the required amount,
-            // then list it as an option (enchantment + enchantment level)
-            if ((currentLevel >= minLevel) && (availablePoints >= reqPoints)) {
-                possibleUpgrades.add(upgradeableEnchants.get(i));
+            switch(skillName.toUpperCase()) {
+                case ("MINING"):
+                    skillExp = new MiningExp(plugin);
+                    break;
+                case ("DIGGING"):
+                    skillExp = new DiggingExp(plugin);
+                    break;
+                case ("CHOPPING"):
+                    skillExp = new ChoppingExp(plugin);
+                    break;
+                case ("FARMING"):
+                    skillExp = new FarmingExp(plugin);
+                    break;
+                case ("FISHING"):
+                    skillExp = new FishingExp(plugin);
+                    break;
+                case ("ARCHERY"):
+                    skillExp = new ArcheryExp(plugin);
+                    break;
+                case ("COMBAT"):
+                    skillExp = new CombatExp(plugin);
+                    break;
+                case ("TRIDENT"):
+                    skillExp = new TridentExp(plugin);
+                    break;
             }
+
+            if (skillExp != null) {
+                double currentLevel = skillExp.getCurrentSkillLevel(currentXP);
+
+                System.out.println("currentlevel: " + currentLevel);
+
+                // if our skill level exceeds the minimum level, and our available skill points exceeds the required amount,
+                // then list it as an option (enchantment + enchantment level)
+                if ((currentLevel >= minLevel) && (availablePoints >= reqPoints)) {
+                    possibleUpgrades.add(upgradeableEnchants.get(i));
+                }
+            }
+
         }
         return possibleUpgrades;
     }

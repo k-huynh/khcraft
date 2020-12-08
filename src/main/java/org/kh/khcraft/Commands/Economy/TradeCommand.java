@@ -3,6 +3,7 @@ package org.kh.khcraft.Commands.Economy;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.Player;
 import org.kh.khcraft.Khcraft;
 import org.kh.khcraft.Utilities;
 
@@ -50,6 +51,21 @@ public class TradeCommand implements TabExecutor {
                     sendKB(args[0], sender.getName(), Double.parseDouble(args[1]), getMessage(message));
 
                     sender.sendMessage(String.format("Success! %s transferred to %s.", args[1], args[0]));
+
+                    Player targetPlayer = plugin.getServer().getPlayer(args[0]);
+
+                    // send a message to the player if they are online
+                    if (targetPlayer != null) {
+                        if (args.length > 2) {
+                            // message supplied
+                            targetPlayer.sendMessage(String.format("%s transferred you %s, saying \"%s\"", sender.getName(), args[1], args[2]));
+                        }
+                        else {
+                            // message not supplied
+                            targetPlayer.sendMessage(String.format("%s transferred you %s, no message attached", sender.getName(), args[1]));
+                        }
+                    }
+
                     return true;
                 }
                 else {

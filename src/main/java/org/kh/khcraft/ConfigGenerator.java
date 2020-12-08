@@ -949,6 +949,9 @@ public class ConfigGenerator {
         config.addDefault("items.HOVER_ITEM.vanillaBase", "BEE_SPAWN_EGG");
         config.addDefault("items.HOVER_ITEM.name", "Red Bull");
 
+        List<String> hoverDescription = Arrays.asList("Grants the power of creative flight, as long as it is equipped in your off-hand, and you have an elytra on!");
+        config.addDefault("items.HOVER_ITEM.description", hoverDescription);
+
         config.options().copyDefaults(true);
         plugin.saveConfig();
     }

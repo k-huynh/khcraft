@@ -8,11 +8,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.kh.khcraft.Khcraft;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BuyCommand implements TabExecutor {
@@ -39,6 +41,7 @@ public class BuyCommand implements TabExecutor {
         // should only work if the item name is specified correctly. Since the item names can be more than 1 word, and
         // we have no other arguments we care about, we can just take all args as the item name
         if (sender instanceof Player) {
+            Player player = (Player) sender;
             if (args.length > 0) {
                 String itemName = "";
                 for (int i = 0; i < args.length; i++) {
@@ -59,8 +62,29 @@ public class BuyCommand implements TabExecutor {
                     // they have enough money to buy it!
                     if (balance >= price) {
                         // create the item
-                        ItemStack customItem = new ItemStack(Material.BEE_SPAWN_EGG);
+                        Material baseMaterial = Material.getMaterial(config.getString(String.format("items.%s.vanillaBase", item)));
+                        ItemStack customItem = new ItemStack(baseMaterial);
+
+                        // set NBT info
+                        ItemMeta meta = customItem.getItemMeta();
+                        meta.setDisplayName(config.getString(String.format("items.%s.name", item)));
+                        meta.setLore(config.getStringList(String.format("items.%s.description", item)));
+
+                        customItem.setItemMeta(meta);
+
                         // try give player the item
+                        HashMap<Integer, ItemStack> map = player.getInventory().addItem(customItem);
+
+                        // success!
+                        if (map.isEmpty()) {
+                            // remove the money from their account
+
+                        }
+                        // no room :(
+                        else {
+
+                        }
+
 
 
                     }
@@ -102,5 +126,13 @@ public class BuyCommand implements TabExecutor {
         }
 
         return 0.0;
+    }
+
+    public void deductKB(String playerName, double amount) {
+        try {
+            plugin.stmt.executeUpdate(String.format("UPDATE Users SET KB = KB - %f WHERE Username = '%s'\n", amount, playerName));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
