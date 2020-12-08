@@ -1,5 +1,6 @@
 package org.kh.khcraft.Commands.Skills;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -36,6 +37,7 @@ public class SkillsCommand implements TabExecutor {
                 ResultSet userSkillRS = plugin.stmt.executeQuery(String.format("SELECT XP, AvailablePoints, SkillName FROM UserSkills WHERE Username = '%s';",
                         playerName));
 
+
                 while (userSkillRS.next()) {
                     // get current xp and available points for this skill
                     double currentXP = userSkillRS.getDouble(1);
@@ -70,7 +72,7 @@ public class SkillsCommand implements TabExecutor {
                             skillExp = new TridentExp(plugin);
                             break;
                         case("GENERAL"):
-                            sendStr = sendStr + String.format("GENERAL | Available Points: %d\n", availablePoints);
+                            sendStr = sendStr + String.format("GENERAL.....| Available Points: %d\n", availablePoints);
                             continue;
                     }
 
@@ -86,7 +88,7 @@ public class SkillsCommand implements TabExecutor {
                     // get xp required to next level
                     double requiredXPToNext = requiredXP - requiredXPCurrent;
 
-                    sendStr = sendStr + String.format("%s | Level: %4d, XP: %.1f/%.1f, Available Points: %d\n", skillName, (int) currentLevel, currentXP - requiredXPCurrent, requiredXPToNext, availablePoints);
+                    sendStr = sendStr + String.format("%s| Level: %4d, XP: %.1f/%.1f, Available Points: %d\n", getSpacedSkillName(skillName), (int) currentLevel, currentXP - requiredXPCurrent, requiredXPToNext, availablePoints);
 
                 }
 
@@ -95,6 +97,7 @@ public class SkillsCommand implements TabExecutor {
             }
 
             // sent to player
+            player.sendMessage(ChatColor.BOLD + "SKILLS");
             player.sendMessage(sendStr);
 
             return true;
@@ -106,5 +109,38 @@ public class SkillsCommand implements TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         // no tab completion necessary so return an empty arraylist
         return new ArrayList<String>();
+    }
+
+    public String getSpacedSkillName(String skillName) {
+        String spacedName;
+        switch(skillName) {
+            case ("MINING"):
+                spacedName = "MINING..........";
+                break;
+            case ("DIGGING"):
+                spacedName = "DIGGING.......";
+                break;
+            case ("CHOPPING"):
+                spacedName = "CHOPPING...";
+                break;
+            case ("FARMING"):
+                spacedName = "FARMING......";
+                break;
+            case ("FISHING"):
+                spacedName = "FISHING.......";
+                break;
+            case ("ARCHERY"):
+                spacedName = "ARCHERY.....";
+                break;
+            case ("COMBAT"):
+                spacedName = "COMBAT........";
+                break;
+            case ("TRIDENT"):
+                spacedName = "TRIDENT......";
+                break;
+            default:
+                spacedName = "GENERAL.....";
+        }
+        return spacedName;
     }
 }

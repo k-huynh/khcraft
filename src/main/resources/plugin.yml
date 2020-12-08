@@ -37,3 +37,6 @@ commands:
   trade:
     description: todo
     usage: todo
+  balance:
+    description: todo
+    usage: todo

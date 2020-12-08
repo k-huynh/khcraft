@@ -606,22 +606,22 @@ public class ConfigGenerator {
         /*
          * block exp (farming)
          */
-        config.addDefault("skills.farming.blocks.NETHER_WART_BLOCK", 1);
-        config.addDefault("skills.farming.blocks.WARPED_WART_BLOCK", 1);
-        config.addDefault("skills.farming.blocks.SHROOMLIGHT", 1);
-        config.addDefault("skills.farming.blocks.HAY_BALE", 1);
+        config.addDefault("skills.farming.blocks.NETHER_WART_BLOCK", 5);
+        config.addDefault("skills.farming.blocks.WARPED_WART_BLOCK", 5);
+        config.addDefault("skills.farming.blocks.SHROOMLIGHT", 5);
+        config.addDefault("skills.farming.blocks.HAY_BALE", 5);
         // leaves
-        config.addDefault("skills.farming.blocks.OAK_LEAVES", 0.2);
-        config.addDefault("skills.farming.blocks.SPRUCE_LEAVES", 0.2);
-        config.addDefault("skills.farming.blocks.BIRCH_LEAVES", 0.2);
-        config.addDefault("skills.farming.blocks.JUNGLE_LEAVES", 0.2);
-        config.addDefault("skills.farming.blocks.ACACIA_LEAVES", 0.2);
-        config.addDefault("skills.farming.blocks.DARK_OAK_LEAVES", 0.2);
+        config.addDefault("skills.farming.blocks.OAK_LEAVES", 1);
+        config.addDefault("skills.farming.blocks.SPRUCE_LEAVES", 1);
+        config.addDefault("skills.farming.blocks.BIRCH_LEAVES", 1);
+        config.addDefault("skills.farming.blocks.JUNGLE_LEAVES", 1);
+        config.addDefault("skills.farming.blocks.ACACIA_LEAVES", 1);
+        config.addDefault("skills.farming.blocks.DARK_OAK_LEAVES", 1);
 
         // from cheah
-        config.addDefault("skills.farming.blocks.SPONGE", 1);
-        config.addDefault("skills.farming.blocks.WET_SPONGE", 1);
-        config.addDefault("skills.farming.blocks.TARGET", 1);
+        config.addDefault("skills.farming.blocks.SPONGE", 5);
+        config.addDefault("skills.farming.blocks.WET_SPONGE", 5);
+        config.addDefault("skills.farming.blocks.TARGET", 5);
 
         // crops
         List<String> cropsList = Arrays.asList("WHEAT",
@@ -881,39 +881,39 @@ public class ConfigGenerator {
         config.addDefault("skills.mining.requirements.pickaxe.LOOT_BONUS_BLOCKS.level", 25);
         config.addDefault("skills.mining.requirements.pickaxe.LOOT_BONUS_BLOCKS.points", 2);
 
-        config.addDefault("skills.digging.requirements.shovel.SILK_TOUCH.level", 50);
+        config.addDefault("skills.digging.requirements.shovel.SILK_TOUCH.level", 25);
         config.addDefault("skills.digging.requirements.shovel.SILK_TOUCH.points", 2);
-        config.addDefault("skills.digging.requirements.shovel.LOOT_BONUS_BLOCKS.level", 35);
+        config.addDefault("skills.digging.requirements.shovel.LOOT_BONUS_BLOCKS.level", 25);
         config.addDefault("skills.digging.requirements.shovel.LOOT_BONUS_BLOCKS.points", 2);
 
-        config.addDefault("skills.chopping.requirements.axe.SILK_TOUCH.level", 50);
+        config.addDefault("skills.chopping.requirements.axe.SILK_TOUCH.level", 25);
         config.addDefault("skills.chopping.requirements.axe.SILK_TOUCH.points", 2);
-        config.addDefault("skills.chopping.requirements.axe.LOOT_BONUS_BLOCKS.level", 35);
+        config.addDefault("skills.chopping.requirements.axe.LOOT_BONUS_BLOCKS.level", 25);
         config.addDefault("skills.chopping.requirements.axe.LOOT_BONUS_BLOCKS.points", 2);
 
-        config.addDefault("skills.farming.requirements.hoe.SILK_TOUCH.level", 50);
+        config.addDefault("skills.farming.requirements.hoe.SILK_TOUCH.level", 25);
         config.addDefault("skills.farming.requirements.hoe.SILK_TOUCH.points", 2);
-        config.addDefault("skills.farming.requirements.hoe.LOOT_BONUS_BLOCKS.level", 35);
+        config.addDefault("skills.farming.requirements.hoe.LOOT_BONUS_BLOCKS.level", 25);
         config.addDefault("skills.farming.requirements.hoe.LOOT_BONUS_BLOCKS.points", 2);
 
         config.addDefault("skills.combat.requirements.sword.LOOT_BONUS_MOBS.level", 35);
         config.addDefault("skills.combat.requirements.sword.LOOT_BONUS_MOBS.points", 2);
 
-        config.addDefault("skills.general.requirements.boots.PROTECTION_FALL.level", 20);
+//        config.addDefault("skills.general.requirements.boots.PROTECTION_FALL.level", 20);
         config.addDefault("skills.general.requirements.boots.PROTECTION_FALL.points", 2);
-        config.addDefault("skills.general.requirements.boots.DEPTH_STRIDER.level", 20);
+//        config.addDefault("skills.general.requirements.boots.DEPTH_STRIDER.level", 20);
         config.addDefault("skills.general.requirements.boots.DEPTH_STRIDER.points", 2);
-        config.addDefault("skills.general.requirements.boots.FROST_WALKER.level", 20);
+//        config.addDefault("skills.general.requirements.boots.FROST_WALKER.level", 20);
         config.addDefault("skills.general.requirements.boots.FROST_WALKER.points", 2);
-        config.addDefault("skills.general.requirements.boots.SOUL_SPEED.level", 20);
+//        config.addDefault("skills.general.requirements.boots.SOUL_SPEED.level", 20);
         config.addDefault("skills.general.requirements.boots.SOUL_SPEED.points", 2);
 
         config.addDefault("skills.archery.requirements.bow.ARROW_INFINITE.level", 30);
         config.addDefault("skills.archery.requirements.bow.ARROW_INFINITE.points", 2);
 
-        config.addDefault("skills.general.requirements.helmet.OXYGEN.level", 20);
+//        config.addDefault("skills.general.requirements.helmet.OXYGEN.level", 20);
         config.addDefault("skills.general.requirements.helmet.OXYGEN.points", 2);
-        config.addDefault("skills.general.requirements.helmet.WATER_WORKER.level", 20);
+//        config.addDefault("skills.general.requirements.helmet.WATER_WORKER.level", 20);
         config.addDefault("skills.general.requirements.helmet.WATER_WORKER.points", 2);
 
         // max levels
@@ -933,6 +933,20 @@ public class ConfigGenerator {
 
         config.addDefault("skills.general.max.helmet.WATER_WORKER", 1);
 
+        // custom items
+        // list of custom item names
+        List<String> customItemsList = Arrays.asList("HOVER_ITEM");
+
+        config.addDefault("items.customItems", customItemsList);
+
+        // list of vanilla base items
+        List<String> vanillaBaseList = Arrays.asList("BEE_SPAWN_EGG");
+
+        config.addDefault("items.vanillaBase", vanillaBaseList);
+
+        // custom item requirements
+        config.addDefault("items.HOVER_ITEM.cost", 20000);
+        config.addDefault("items.HOVER_ITEM.vanillaBase", "BEE_SPAWN_EGG");
 
         config.options().copyDefaults(true);
         plugin.saveConfig();

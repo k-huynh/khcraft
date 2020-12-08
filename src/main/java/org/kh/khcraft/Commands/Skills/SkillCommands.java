@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public abstract class SkillCommands implements TabExecutor {
     Khcraft plugin;
@@ -462,10 +463,37 @@ public abstract class SkillCommands implements TabExecutor {
         return config.getStringList(String.format("skills.%s.equipment", skillName.toLowerCase()));
     }
 
+    public String getVanillaName(String enchantmentName) {
+        return config.getString(String.format("skills.enchantments.%s", enchantmentName));
+    }
+
     public List<String> getVanillaNames(List<String> enchantmentList) {
         List<String> vanillaNames = new ArrayList<String>();
         for (int i = 0; i < enchantmentList.size(); i++) {
-            vanillaNames.add(config.getString(String.format("skills.enchantments.%s", enchantmentList.get(i))));
+            vanillaNames.add(getVanillaName(enchantmentList.get(i)));
+        }
+
+        return vanillaNames;
+    }
+
+    public List<String> getVanillaNamesUpgradeable(List<String> dirtyEnchantmentList) {
+        // when using getUpgradeableEnchantments, it returns it in the form enchantmentName_nextLevel; we want to take
+        // take that list, and change it to vanillaEnchantmentName nextLevel
+
+        List<String> vanillaNames = new ArrayList<String>();
+
+        for (int i = 0; i < dirtyEnchantmentList.size(); i++) {
+            // extract enchantment name and level
+            int underscoreIndex = dirtyEnchantmentList.get(i).lastIndexOf("_");
+            String enchantmentName = dirtyEnchantmentList.get(i).substring(0, underscoreIndex);
+            String enchantmentLevel = dirtyEnchantmentList.get(i).substring(underscoreIndex + 1);
+
+            // convert enchantmentName to vanilla name
+            String vanillaName = getVanillaName(enchantmentName);
+
+            // add to vanillaName
+            vanillaNames.add(String.format("%s_%s", vanillaName, enchantmentLevel));
+
         }
 
         return vanillaNames;

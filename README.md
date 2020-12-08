@@ -2,7 +2,7 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 70% done? 
+### Broken 💔 maybe 71% done? 
 <br>
 
 ## Still to-do (in no particular order)
@@ -12,16 +12,14 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - cap repair costs for elytra in anvil
 - update 'help' info with skills (i.e. replace the 'todo' and stuff)
 - make EnchantmentListener less computationally intensive -- i.e. dont check every item every time
-- rename enchantments nicely for upgrade/select without breaking everything
 - test everything properly lol
-- make /skills output look nicer
+- rename enchantments nicely for upgrade/select without breaking everything
+- add more meaningful console logs
 
 ## Doing
 - commands for economy
-    - /trade @to amount 'msg'
     - /shop (lists server store items?)
-    - /buy itemName
-    - /givekb @to amount 'msg' (server operator only)
+    - /buy itemName (for custom items)
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
@@ -44,6 +42,9 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - /skills display correctly displays xp and current level
 - skill exp no longer double counting level ups (and hence skill point awarding) (i think)
 - test that skill point requirements and level requirements for enchants are working correctly (ACCORDING TO CHEAH)
+- /trade @to {amount} {message (optional)} works
+- /skills output is now aligned better (although it still kinda sucks sorry)
+- /balance {optional: playername} works
 
 ## Fully Completed
 - getting exp from mining
@@ -68,6 +69,9 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - disable villager trading
 - make sure flint and steel, carrot and warped fungus on stick enchantments are handled properly 
 - test that you dont get doubly awarded skill points
+- trading KB and logging the transaction
+- make /skills output look nicer (a little lol)
+- /balance (gives you your KB balance) (should also be able to show other players balances)
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
@@ -77,6 +81,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - add a way to 'unspec' skill points/reset skill trees
 - additional commands for skills i.e.
     - /givesp @to skillName n (server operator only) (award skill points)
+- additional commands for economy, i.e.
+    - /givekb @to amount 'msg' (server operator only)
 
 <br>
 
@@ -84,3 +90,5 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - did not do any further testing for exp level up events
 - POTENTIAL ISSUE: due to floating point operations, there may be inaccuracies with calculating level up bounds. Most of these should be within +/- 1 exp event but i haven't tested nor verified the logic to be 100% correct. Worst case scenarios: not recognising level up resulting in missed skill point awards, or doubly recognising a level up resulting in double skill point awards
 - note: will not count if you skip multiples of 5 levels towards giving skill points :(
+- removed level requirements for general enchantments (since there isnt really a notion of 'levels' (yet) for general skills)
+- NOTE: partial issue regarding resultset queries when checking for incompatible enchantments; not sure if it poses any functional risks though

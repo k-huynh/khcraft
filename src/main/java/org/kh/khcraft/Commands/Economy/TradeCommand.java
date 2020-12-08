@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.kh.khcraft.Khcraft;
+import org.kh.khcraft.Utilities;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +13,11 @@ import java.util.List;
 
 public class TradeCommand implements TabExecutor {
     Khcraft plugin;
+    Utilities utilities;
 
     public TradeCommand(Khcraft instance) {
         plugin = instance;
+        utilities = new Utilities(plugin);
     }
 
 
@@ -34,7 +37,7 @@ public class TradeCommand implements TabExecutor {
 
         // check if transaction is possible
         // get list of players
-        List<String> players = getPlayerList();
+        List<String> players = utilities.getPlayerList();
 
         // need to supply at a minimum the name and amount
         if (args.length > 1) {
@@ -73,29 +76,11 @@ public class TradeCommand implements TabExecutor {
         // i.e., only need tab completion for the first argument
         if (args.length == 1) {
             // return list of people (need not be online)
-            return getPlayerList();
+            return utilities.getPlayerList();
         }
 
         // should return an empty arraylist
         return new ArrayList<String>();
-    }
-
-
-    public List<String> getPlayerList() {
-        // get list of playernames from database
-        List<String> players = new ArrayList<String>();
-
-        try {
-            ResultSet userQueryRS = plugin.stmt.executeQuery("SELECT Username FROM Users;");
-
-            while (userQueryRS.next()) {
-                players.add(userQueryRS.getString(1));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return players;
     }
 
     public double getKBBalance(String playerName) {

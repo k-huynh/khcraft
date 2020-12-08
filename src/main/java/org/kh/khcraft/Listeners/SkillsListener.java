@@ -245,7 +245,7 @@ public class SkillsListener implements Listener {
         // System.out.printf("Block placed: %s\n", event.getBlockPlaced().getType().toString());
         // just need to check if block placed is farmland
         if (event.getBlockPlaced().getType().equals(Material.FARMLAND)) {
-            double exp = 0.2;
+            double exp = 1.0;
 
             // give xp to farming skill
             // get player name

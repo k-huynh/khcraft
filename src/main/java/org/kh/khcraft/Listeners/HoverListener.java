@@ -2,34 +2,53 @@ package org.kh.khcraft.Listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerToggleFlightEvent;
-import org.bukkit.event.player.PlayerToggleSprintEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.PlayerInventory;
+import org.kh.khcraft.Khcraft;
 
 import java.io.IOException;
+import java.util.List;
 
 public class HoverListener implements Listener {
+    FileConfiguration config;
+    Khcraft plugin;
+
+    public HoverListener(Khcraft instance) {
+        plugin = instance;
+        config = plugin.getConfig();
+    }
+
+    // need to make sure that you can't "interact" with this item (since i'm using spawn eggs)
+    @EventHandler
+    public void onPlayerInteractEvent (PlayerInteractEvent event) {
+        // get list of base items from config
+        List<String> baseItems = config.getStringList("items.vanillaBase");
+
+        if (baseItems.contains(event.getItem().getType().toString())) {
+            event.setCancelled(true);
+        }
+    }
+
     @EventHandler
     public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) throws IOException {
         ItemStack offItem = event.getOffHandItem();
         if (checkOffHand(offItem)) {
-            System.out.printf("Offhand empty\n");
-            setHover(event.getPlayer(), false);
-        } else {
-            System.out.printf("Offhand: %s\n", offItem.getType());
+            System.out.printf("Offhand %s; true\n", offItem.getType());
             setHover(event.getPlayer(), true);
+        } else {
+            System.out.printf("Offhand %s; false\n", offItem.getType());
+            setHover(event.getPlayer(), false);
         }
     }
 
@@ -44,11 +63,11 @@ public class HoverListener implements Listener {
             ItemStack offItem = playerInventory.getItemInOffHand();
 
             if (checkOffHand((offItem))) {
-                System.out.printf("Invent click; offhand empty\n");
-                setHover(player, false);
-            } else {
-                System.out.printf("invent click; offhand: %s\n", offItem.getType());
+                System.out.printf("Invent click; offhand %s; true\n", offItem.getType());
                 setHover(player, true);
+            } else {
+                System.out.printf("invent click; offhand: %s; false\n", offItem.getType());
+                setHover(player, false);
             }
         }
     }
@@ -65,11 +84,11 @@ public class HoverListener implements Listener {
             ItemStack offItem = playerInventory.getItemInOffHand();
 
             if (checkOffHand(offItem)) {
-                System.out.printf("Invent close; offhand empty\n");
-                setHover(player, false);
-            } else {
-                System.out.printf("invent close; offhand: %s\n", offItem.getType());
+                System.out.printf("Invent close; offhand %s; true\n", offItem.getType());
                 setHover(player, true);
+            } else {
+                System.out.printf("invent close; offhand: %s; false\n", offItem.getType());
+                setHover(player, false);
             }
         }
     }
@@ -82,16 +101,18 @@ public class HoverListener implements Listener {
         ItemStack offItem = playerInventory.getItemInOffHand();
 
         if (checkOffHand(offItem)) {
-            System.out.printf("player join; offhand empty\n");
-            setHover(player, false);
-        } else {
-            System.out.printf("player join; offhand: %s\n", offItem.getType());
+            System.out.printf("player join; offhand %s; true\n", offItem.getType());
             setHover(player, true);
+        } else {
+            System.out.printf("player join; offhand: %s; false\n", offItem.getType());
+            setHover(player, false);
         }
     }
 
+    // returns true if the offhand contains the hover item
     public boolean checkOffHand(ItemStack offItem) {
-        if (offItem.getType().equals(Material.AIR)){
+        String hoverBase = config.getString("items.HOVER_ITEM.vanillaBase");
+        if (offItem.getType().toString().equalsIgnoreCase(hoverBase)){
             return true;
         }
         return false;

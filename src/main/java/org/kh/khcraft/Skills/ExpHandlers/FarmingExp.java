@@ -8,10 +8,10 @@ public class FarmingExp extends SkillExp {
     }
 
     // child class implementation of xp curve
-    // farming: XP = 0.2*level^2  + 5*level => level = -12.5 + sqrt(5)/2 * sqrt(4*x + 125)
+    // farming: XP = level^2  + 25*level => level = -12.5 + 0.5 * sqrt(4*x + 625)
     @Override
     public double getCurrentSkillLevel(double currentExp) {
-        Double exp = Math.floor(-12.5 + Math.sqrt(5)/2 * Math.sqrt(4*currentExp + 125));
+        Double exp = Math.floor(-12.5 + 0.5 * Math.sqrt(4*currentExp + 625));
         if (exp < 0) {
             return 0.0;
         }
@@ -20,6 +20,6 @@ public class FarmingExp extends SkillExp {
 
     @Override
     public double getExpRequired(double currentLevel) {
-        return 0.2*Math.pow(currentLevel, 2) + 5*currentLevel;
+        return Math.pow(currentLevel, 2) + 25*currentLevel;
     }
 }

@@ -1,6 +1,7 @@
 package org.kh.khcraft;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.kh.khcraft.Commands.Economy.BalanceCommand;
 import org.kh.khcraft.Commands.Economy.TradeCommand;
 import org.kh.khcraft.Commands.Skills.*;
 import org.kh.khcraft.Listeners.*;
@@ -28,7 +29,7 @@ public final class Khcraft extends JavaPlugin {
         databaseHandler.databaseSetup();
 
         // register listeners
-        getServer().getPluginManager().registerEvents(new HoverListener(), this);
+        getServer().getPluginManager().registerEvents(new HoverListener(this), this);
         getServer().getPluginManager().registerEvents(new SkillsListener(this), this);
         getServer().getPluginManager().registerEvents(new SkillExpListener(this), this);
         getServer().getPluginManager().registerEvents(new EnchantmentListener(this), this);
@@ -48,6 +49,7 @@ public final class Khcraft extends JavaPlugin {
         this.getCommand("skills").setExecutor(new SkillsCommand(this));
 
         this.getCommand("trade").setExecutor(new TradeCommand(this));
+        this.getCommand("balance").setExecutor(new BalanceCommand(this));
 
 
     }
