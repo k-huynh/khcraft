@@ -43,7 +43,7 @@ public class HoverListener implements Listener {
     @EventHandler
     public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) throws IOException {
         ItemStack offItem = event.getOffHandItem();
-        if (checkOffHand(offItem)) {
+        if (checkOffHand(offItem) && elytraEquipped(event.getPlayer())) {
             System.out.printf("Offhand %s; true\n", offItem.getType());
             setHover(event.getPlayer(), true);
         } else {
@@ -62,7 +62,7 @@ public class HoverListener implements Listener {
             Player player = (Player)humanPlayer;
             ItemStack offItem = playerInventory.getItemInOffHand();
 
-            if (checkOffHand((offItem))) {
+            if (checkOffHand(offItem) && elytraEquipped(player)) {
                 System.out.printf("Invent click; offhand %s; true\n", offItem.getType());
                 setHover(player, true);
             } else {
@@ -83,7 +83,7 @@ public class HoverListener implements Listener {
 
             ItemStack offItem = playerInventory.getItemInOffHand();
 
-            if (checkOffHand(offItem)) {
+            if (checkOffHand(offItem) && elytraEquipped(player)) {
                 System.out.printf("Invent close; offhand %s; true\n", offItem.getType());
                 setHover(player, true);
             } else {
@@ -100,7 +100,7 @@ public class HoverListener implements Listener {
 
         ItemStack offItem = playerInventory.getItemInOffHand();
 
-        if (checkOffHand(offItem)) {
+        if (checkOffHand(offItem) && elytraEquipped(player)) {
             System.out.printf("player join; offhand %s; true\n", offItem.getType());
             setHover(player, true);
         } else {
@@ -115,6 +115,19 @@ public class HoverListener implements Listener {
         if (offItem.getType().toString().equalsIgnoreCase(hoverBase)){
             return true;
         }
+        return false;
+    }
+
+    // also need to check that elytra is equipped
+    public boolean elytraEquipped(Player player) {
+        ItemStack chestplateItem = player.getInventory().getChestplate();
+
+        if (chestplateItem != null) {
+            if (chestplateItem.getType().equals(Material.ELYTRA)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
