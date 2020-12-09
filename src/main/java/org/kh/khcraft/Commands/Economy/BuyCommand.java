@@ -75,6 +75,7 @@ public class BuyCommand implements TabExecutor {
                         ItemMeta meta = customItem.getItemMeta();
                         meta.setDisplayName(config.getString(String.format("items.%s.name", item)));
                         meta.setLore(config.getStringList(String.format("items.%s.description", item)));
+                        meta.setCustomModelData(config.getInt(String.format("items.%s.cmd", item)));
                         customItem.setItemMeta(meta);
 
                         // try give player the item

@@ -124,8 +124,14 @@ public class HoverListener implements Listener {
     // returns true if the offhand contains the hover item
     public boolean checkOffHand(ItemStack offItem) {
         String hoverBase = config.getString("items.HOVER_ITEM.vanillaBase");
+        int cmd = config.getInt("items.HOVER_ITEM.cmd");
         if (offItem.getType().toString().equalsIgnoreCase(hoverBase)){
-            return true;
+            // check custom model data tag
+            if (offItem.getItemMeta().hasCustomModelData()) {
+                if (offItem.getItemMeta().getCustomModelData() == cmd) {
+                    return true;
+                }
+            }
         }
         return false;
     }

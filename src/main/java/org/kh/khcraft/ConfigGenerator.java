@@ -948,6 +948,7 @@ public class ConfigGenerator {
         config.addDefault("items.HOVER_ITEM.cost", 20000);
         config.addDefault("items.HOVER_ITEM.vanillaBase", "IRON_NUGGET");
         config.addDefault("items.HOVER_ITEM.name", "Red Bull");
+        config.addDefault("items.HOVER_ITEM.cmd", 1000);
 
         List<String> hoverDescription = Arrays.asList("Grants hover, if equipped", "in off-hand, and you", "have an elytra on!");
         config.addDefault("items.HOVER_ITEM.description", hoverDescription);
