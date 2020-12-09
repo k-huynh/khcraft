@@ -36,6 +36,8 @@ public final class Khcraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SkillExpListener(this), this);
         getServer().getPluginManager().registerEvents(new EnchantmentListener(this), this);
         getServer().getPluginManager().registerEvents(new VillagerListener(), this);
+        getServer().getPluginManager().registerEvents(new AnvilListener(this), this);
+        getServer().getPluginManager().registerEvents(new EnchantmentTableListener(), this);
 
         // register commands
         this.getCommand("mining").setExecutor(new MiningCommand(this));

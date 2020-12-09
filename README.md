@@ -2,7 +2,7 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 92% done? 
+### Broken 💔 maybe 95% done? 
 <br>
 
 ## Still to-do (in no particular order)
@@ -10,9 +10,9 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - custom achievements
 - test everything properly lol
 - daily KB bonus
+- integrate with tablist and server plugin from last time
 
 ## Doing
-- cap repair costs for elytra in anvil
 - make EnchantmentListener less computationally intensive -- i.e. dont check every item every time
 
 ## Tested as working
@@ -45,6 +45,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - /buy correctly gives custom item
 - server resource pack works
 - can now only hover when custom item is in off hand (not with any item, nor with the same type as the base item)
+- repair costs for elytra is now capped at 25 (can change in config)
+- right clicking enchanting table does not bring up gui
 
 ## Completed
 - getting exp from mining
@@ -77,6 +79,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - custom items (resource pack)
 - update 'help' info with skills (i.e. replace the 'todo' and stuff)
 - add more meaningful console logs while also removing unnecessary print statements
+- cap repair costs for elytra in anvil
+- disable enchanting table
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
@@ -99,3 +103,6 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - removed level requirements for general enchantments (since there isnt really a notion of 'levels' (yet) for general skills)
 - NOTE: partial issue regarding resultset queries when checking for incompatible enchantments; not sure if it poses any functional risks though
 - realistically i should be creating wrapper classes for stuff like enchantments and custom items but im lazy :) maybe one day i'll do it
+- note: the anvil repair cap will apply to any anvil transaction; i didnt think this would be much of an issue though since you cant enchant equipment with books anyways since they'll disappear when you close the inventory screen
+- note: the anvil repair cap technically will reach a limit at some stage (after 32 repairs I believe) -- is this a problem? I do have alternative solutions in mind if it is
+- note: since we now have the requirement of an elytra being equipped for hover item to work, it won't check if you're allowed to fly (yet) if you put the hover item in your off hand, then equip your elytra by right clicking on the item when its in your hotbar -- i can fix this but just a note for now since i dont think its gamebreaking

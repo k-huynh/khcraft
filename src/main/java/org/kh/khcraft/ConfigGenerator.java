@@ -937,6 +937,9 @@ public class ConfigGenerator {
 
         config.addDefault("skills.general.max.helmet.WATER_WORKER", 1);
 
+        // anvil repair costs
+        config.addDefault("skills.repairs.maxCost", 25);
+
         // custom items
         // list of custom item names
         System.out.printf("Adding custom item related fields\n");

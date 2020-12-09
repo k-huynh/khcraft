@@ -89,7 +89,7 @@ public class EnchantmentListener implements Listener {
         ItemStack[] inventoryContents = playerInventory.getContents();
         List<String> toolList = getToolList(player.getName());
 
-        System.out.printf("Trying to set enchantments on inventory. Inventorycontents length: %d, toollist size: %d\n", inventoryContents.length, toolList.size());
+//        System.out.printf("Trying to set enchantments on inventory. Inventorycontents length: %d, toollist size: %d\n", inventoryContents.length, toolList.size());
 
         // iterate through items in inventory; check if the item is a tool; if so, then remove all enchants from it and
         // then try enchant if it's part of toollist
