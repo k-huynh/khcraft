@@ -72,7 +72,7 @@ public class SkillExpListener implements Listener {
 
         // change later if need to re-balance
         // if level will be 30, then automatically convert to 1 general skill point and reset level/exp to 0
-        if (level == 30) {
+        if (level >= 30) {
             player.sendMessage("You have been given 1 additional General skill point!");
             String playerName = player.getPlayer().getName();
 

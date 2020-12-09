@@ -464,6 +464,12 @@ public abstract class SkillCommands implements TabExecutor {
                     possibleUpgrades.add(upgradeableEnchants.get(i));
                 }
             }
+            // otherwise, we're dealing with the 'GENERAL' skill
+            else {
+                if (availablePoints >= reqPoints) {
+                    possibleUpgrades.add(upgradeableEnchants.get(i));
+                }
+            }
 
         }
         return possibleUpgrades;

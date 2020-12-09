@@ -18,19 +18,28 @@ public class GeneralCommand extends SkillCommands implements TabExecutor {
         // that includes this one
 
         if (toolName.equalsIgnoreCase("boots")) {
+            List<String> incompatible = new ArrayList<String>();
+
             List<String> incompatibleEnchants1 = config.getStringList(String.format("skills.%s.incompatible.%s.1", "general", toolName));
             List<String> incompatibleEnchants2 = config.getStringList(String.format("skills.%s.incompatible.%s.2", "general", toolName));
 
             if (incompatibleEnchants1.contains(enchantmentName)) {
                 incompatibleEnchants1.remove(enchantmentName);
 
-                return incompatibleEnchants1;
+                for (int i = 0; i < incompatibleEnchants1.size(); i++) {
+                    incompatible.add(incompatibleEnchants1.get(i));
+                }
             }
-            else if (incompatibleEnchants2.contains(enchantmentName)) {
+
+            if (incompatibleEnchants2.contains(enchantmentName)) {
                 incompatibleEnchants2.remove(enchantmentName);
 
-                return incompatibleEnchants2;
+                for (int i = 0; i < incompatibleEnchants2.size(); i++) {
+                    incompatible.add(incompatibleEnchants2.get(i));
+                }
             }
+
+            return incompatible;
         }
         else {
             List<String> incompatibleEnchants = config.getStringList(String.format("skills.%s.incompatible.%s", "general", toolName));
