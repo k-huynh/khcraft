@@ -40,6 +40,7 @@ public class DatabaseHandler {
     }
 
     public void openConnection() throws SQLException, ClassNotFoundException {
+        System.out.println("Attempting to open connection to database");
         if (plugin.connection != null && !plugin.connection.isClosed()){
             return;
         }
@@ -50,6 +51,7 @@ public class DatabaseHandler {
     }
 
     public void databaseSetup() {
+        System.out.println("Setting up database");
         try {
             // users table
             String userQuery = "CREATE TABLE IF NOT EXISTS Users("

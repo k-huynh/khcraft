@@ -58,11 +58,13 @@ public class TradeCommand implements TabExecutor {
                     if (targetPlayer != null) {
                         if (args.length > 2) {
                             // message supplied
-                            targetPlayer.sendMessage(String.format("%s transferred you %s, saying \"%s\"", sender.getName(), args[1], args[2]));
+                            targetPlayer.sendMessage(String.format("%s transferred you %s, saying \"%s\"", sender.getName(), args[1], getMessage(message)));
+                            System.out.printf("%s transferred %s %s KB, saying \"%s\"\n", sender.getName(), args[0], args[1], getMessage(message));
                         }
                         else {
                             // message not supplied
                             targetPlayer.sendMessage(String.format("%s transferred you %s, no message attached", sender.getName(), args[1]));
+                            System.out.printf("%s transferred %s %s KB, no message attached\n", sender.getName(), args[0], args[1]);
                         }
                     }
 
@@ -70,17 +72,18 @@ public class TradeCommand implements TabExecutor {
                 }
                 else {
                     sender.sendMessage("Insufficient funds!");
-                    return false;
+                    System.out.printf("%s tried to send %s KB to %s but had insufficient funds\n", sender.getName(), args[1], args[0]);
+                    return true;
                 }
             }
             else {
                 sender.sendMessage("Provided player name does not exist!");
-                return false;
+                return true;
             }
         }
         else {
             sender.sendMessage("Please specify player name and amount to transfer!");
-            return false;
+            return true;
         }
     }
 

@@ -35,7 +35,6 @@ public class SkillExpListener implements Listener {
                 diggingExp.handleSkillExp(playerName, skillName, exp, player);
                 break;
             case("CHOPPING"):
-                System.out.println("chopping exp changed");
                 ChoppingExp choppingExp = new ChoppingExp(plugin);
                 choppingExp.handleSkillExp(playerName, skillName, exp, player);
                 break;

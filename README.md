@@ -2,21 +2,18 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 71% done? 
+### Broken 💔 maybe 92% done? 
 <br>
 
 ## Still to-do (in no particular order)
 - change loot tables
 - custom achievements
-- cap repair costs for elytra in anvil
-- update 'help' info with skills (i.e. replace the 'todo' and stuff)
-- make EnchantmentListener less computationally intensive -- i.e. dont check every item every time
 - test everything properly lol
-- rename enchantments nicely for upgrade/select without breaking everything
-- add more meaningful console logs
+- daily KB bonus
 
 ## Doing
-- custom items (resource pack)
+- cap repair costs for elytra in anvil
+- make EnchantmentListener less computationally intensive -- i.e. dont check every item every time
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
@@ -46,8 +43,10 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - can only hover if the specified hover item is in offhand
 - /shop lists custom items specified in config
 - /buy correctly gives custom item
+- server resource pack works
+- can now only hover when custom item is in off hand (not with any item, nor with the same type as the base item)
 
-## Fully Completed
+## Completed
 - getting exp from mining
 - getting exp from chopping
 - getting exp from digging
@@ -75,6 +74,9 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - /balance (gives you your KB balance) (should also be able to show other players balances)
 - /shop (lists server store items?)
 - /buy itemName (for custom items)
+- custom items (resource pack)
+- update 'help' info with skills (i.e. replace the 'todo' and stuff)
+- add more meaningful console logs while also removing unnecessary print statements
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
@@ -86,6 +88,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
     - /givesp @to skillName n (server operator only) (award skill points)
 - additional commands for economy, i.e.
     - /givekb @to amount 'msg' (server operator only)
+- rename enchantments nicely for upgrade/select without breaking everything
 
 <br>
 

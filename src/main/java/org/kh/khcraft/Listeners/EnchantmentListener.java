@@ -89,7 +89,7 @@ public class EnchantmentListener implements Listener {
         ItemStack[] inventoryContents = playerInventory.getContents();
         List<String> toolList = getToolList(player.getName());
 
-        System.out.printf("Trying to setenchantment. Inventorycontents length: %d, toollist size: %d\n", inventoryContents.length, toolList.size());
+        System.out.printf("Trying to set enchantments on inventory. Inventorycontents length: %d, toollist size: %d\n", inventoryContents.length, toolList.size());
 
         // iterate through items in inventory; check if the item is a tool; if so, then remove all enchants from it and
         // then try enchant if it's part of toollist
@@ -98,26 +98,25 @@ public class EnchantmentListener implements Listener {
                 String toolName = inventoryContents[i].getType().toString().toLowerCase();
                 String sanitisedToolName = toolName;
                 // if there's a _ in the name, then get the last 'word'; else just use the whole word
-                if (toolName.equals("flint_and_steel") || toolName.equals("carrot_on_a_stick") || toolName.equals("warped_fungus_on_a_stick")) {
-                    System.out.println("multiword tool detected!!");
-                }
-                else if (toolName.contains("_")){
-                    int underscoreIndex = toolName.lastIndexOf("_");
-                    sanitisedToolName = toolName.substring(underscoreIndex + 1);
+                if (toolName.contains("_")) {
+                    if (!(toolName.equals("flint_and_steel") || toolName.equals("carrot_on_a_stick") || toolName.equals("warped_fungus_on_a_stick"))) {
+                        int underscoreIndex = toolName.lastIndexOf("_");
+                        sanitisedToolName = toolName.substring(underscoreIndex + 1);
+                    }
                 }
 
-                System.out.printf("Considering %s (%s)\n", sanitisedToolName, toolName);
+//                System.out.printf("Considering %s (%s)\n", sanitisedToolName, toolName);
 
                 // check if it's a tool
                 if (getEnchantableToolsList().contains(sanitisedToolName)) {
-                    System.out.printf("%s is a tool! removing enchantments\n", sanitisedToolName);
+//                    System.out.printf("%s is a tool! removing enchantments\n", sanitisedToolName);
                     // remove enchants
                     removeAllEnchantmentsFromItem(inventoryContents[i]);
                 }
 
                 // check if the tool is in toollist
                 if (toolList.contains(sanitisedToolName)) {
-                    System.out.printf("%s is in toolList! adding enchantments\n", sanitisedToolName);
+//                    System.out.printf("%s is in toolList! adding enchantments\n", sanitisedToolName);
                     // try enchant
                     enchantTool(player.getName(), sanitisedToolName, inventoryContents[i]);
                 }
@@ -152,7 +151,7 @@ public class EnchantmentListener implements Listener {
     }
 
     public void enchantTool(String playerName, String toolName, ItemStack tool) {
-        System.out.printf("attempting to enchant %s\n", tool.getType().toString());
+//        System.out.printf("attempting to enchant %s\n", tool.getType().toString());
         try {
             // gets the enchantments from the database
             ResultSet enchantments = plugin.stmt.executeQuery(String.format("SELECT EnchantmentName, EnchantmentLevel FROM UserEnchantments WHERE Username = '%s' AND Equipment = '%s' AND Enabled = 1;", playerName, toolName));
@@ -162,7 +161,7 @@ public class EnchantmentListener implements Listener {
 
             while (enchantments.next()) {
                 // apply it to the tool
-                System.out.printf("enchantment: %s\n", enchantments.getString(1));
+//                System.out.printf("enchantment: %s\n", enchantments.getString(1));
 
                 // get enchantment
                 tool.addUnsafeEnchantment(getEnchantmentFromString(enchantments.getString(1)), enchantments.getInt(2));

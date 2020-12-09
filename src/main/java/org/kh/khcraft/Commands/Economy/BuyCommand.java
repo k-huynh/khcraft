@@ -91,16 +91,20 @@ public class BuyCommand implements TabExecutor {
                             }
 
                             sender.sendMessage(String.format("%s purchased for %.2f", itemName, price));
+                            System.out.printf("%s purchased %s for %f\n", sender.getName(), itemName, price);
+                            return true;
 
                         }
                         // no room :(
                         else {
                             sender.sendMessage("No space in inventory :(");
+                            System.out.printf("%s tried to purchase %s for %f but had no space\n", sender.getName(), itemName, price);
                         }
                         return true;
                     }
                     else {
                         sender.sendMessage("Insufficient funds! :(");
+                        System.out.printf("%s tried to purchase %s for %f but had insufficient funds\n", sender.getName(), itemName, price);
                         return true;
                     }
                 }

@@ -15,6 +15,9 @@ public class ConfigGenerator {
     }
 
     public void generateConfig() {
+        System.out.println("<========= Generating config.yml =========>");
+
+        System.out.println("Adding database related fields");
         // db config
         config.addDefault("db.host", "localhost");
         config.addDefault("db.port", "3306");
@@ -23,6 +26,7 @@ public class ConfigGenerator {
         // need to update the config yourself to add the pword!
         config.addDefault("db.pass", "");
 
+        System.out.println("Adding skills related fields");
         // skills config
         List<String> skillsList = Arrays.asList("MINING",
                 "CHOPPING",
@@ -935,6 +939,7 @@ public class ConfigGenerator {
 
         // custom items
         // list of custom item names
+        System.out.printf("Adding custom item related fields\n");
         List<String> customItemsList = Arrays.asList("HOVER_ITEM");
 
         config.addDefault("items.customItems", customItemsList);
@@ -953,6 +958,7 @@ public class ConfigGenerator {
         List<String> hoverDescription = Arrays.asList("Grants hover, if equipped", "in off-hand, and you", "have an elytra on!");
         config.addDefault("items.HOVER_ITEM.description", hoverDescription);
 
+        System.out.println("<========= Saving to config.yml =========>");
         config.options().copyDefaults(true);
         plugin.saveConfig();
     }

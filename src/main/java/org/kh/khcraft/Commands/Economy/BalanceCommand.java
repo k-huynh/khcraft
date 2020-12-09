@@ -41,7 +41,7 @@ public class BalanceCommand implements TabExecutor {
             else {
                 // result was not found
                 sender.sendMessage("Could not find your balance :(");
-                return false;
+                return true;
             }
 
         } catch (SQLException e) {

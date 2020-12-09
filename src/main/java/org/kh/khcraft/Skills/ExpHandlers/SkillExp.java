@@ -22,7 +22,7 @@ public abstract class SkillExp {
         double levelExpRequired = getExpRequired(currentLevel);
         double expDifference = currentExp - levelExpRequired;
 
-        System.out.printf("currentExp: %f, lvlExpRequired: %f, expDiff: %f, exp gained: %f \n", currentExp, levelExpRequired, expDifference, exp);
+//        System.out.printf("currentExp: %f, lvlExpRequired: %f, expDiff: %f, exp gained: %f \n", currentExp, levelExpRequired, expDifference, exp);
 
         // if the difference in exp is less than the amount we just got, then we leveled up!
         if (expDifference < exp) {

@@ -45,15 +45,16 @@ public abstract class SkillCommands implements TabExecutor {
                         // enable enchants in db
                         if (enableEnchants(player.getName(), command.getName(), toolName, enchantmentName, enchantmentLevel)) {
                             // call EnchantmentAppliedEvent so tools in inventory will be updated with selected enchantments
-                            EnchantmentAppliedEvent enchantmentAppliedEvent = new EnchantmentAppliedEvent(sender.getName(), player);
+                            EnchantmentAppliedEvent enchantmentAppliedEvent = new EnchantmentAppliedEvent(player.getName(), player);
                             Bukkit.getPluginManager().callEvent(enchantmentAppliedEvent);
 
                             // tell the sender that the enchantment was applied
                             sender.sendMessage(String.format("%s applied to %s successfully!", enchantmentName, toolName));
+                            System.out.printf("%s applied %s %d to %s\n", player.getName(), enchantmentName, enchantmentLevel, toolName);
                         }
                         else {
                             sender.sendMessage(String.format("Unable to enchant %s with %s :(\n", toolName, enchantmentName));
-
+                            System.out.printf("%s was unable to enchant %s with %s %d\n", player.getName(), toolName, enchantmentName, enchantmentLevel);
                         }
 
 
@@ -78,8 +79,8 @@ public abstract class SkillCommands implements TabExecutor {
                             sendStr = sendStr + toolUpgrades.get(toolUpgrades.size() - 1);
                             sender.sendMessage(sendStr);
 
-                            return true;
                         }
+                        return true;
                     }
                     // if a tool has been specified, then we want to list all the available options for that tool
                     else if (args.length == 2) {
@@ -99,11 +100,13 @@ public abstract class SkillCommands implements TabExecutor {
                         // send message saying success if we were able to give them the enchantment
                         if (givePlayerEnchantment(player.getName(), command.getName(), args[1], args[2])) {
                             sender.sendMessage(String.format("%s for %s successfully learned!", args[2], args[1]));
+                            System.out.printf("%s learned %s for %s\n", player.getName(), args[2], args[1]);
                             return true;
                         }
                         // send message saying they couldn't do it if we couldn't
                         else {
                             sender.sendMessage(String.format("Could not learn %s for %s :(", args[2], args[1]));
+                            System.out.printf("%s was unable to learn %s for %s\n", player.getName(), args[2], args[1]);
                             return true;
                         }
                     }
@@ -119,6 +122,7 @@ public abstract class SkillCommands implements TabExecutor {
 
                         // tell the sender that the enchantment was applied
                         sender.sendMessage(String.format("Enchantments for %s disabled successfully!", args[1]));
+                        System.out.printf("%s disabled enchantments for %s\n", player.getName(), args[1]);
                         return true;
                     }
                 }
@@ -243,15 +247,15 @@ public abstract class SkillCommands implements TabExecutor {
         // ensure they meet the requirements for the enchantment (sufficient skill points and skill level)
         // get upgradeable enchantments
         List<String> upgradeableEnchantments = getPossibleUpgrades(playerName, toolName, skillName);
-
-        for (int i = 0; i < upgradeableEnchantments.size(); i++) {
-            System.out.println(upgradeableEnchantments.get(i));
-        }
+//
+//        for (int i = 0; i < upgradeableEnchantments.size(); i++) {
+//            System.out.println(upgradeableEnchantments.get(i));
+//        }
 
         // check if this enchantment is on the list; if so, then add to userenchantments and deduct skill points, then return true
         if (upgradeableEnchantments.contains(enchantmentName)) {
             // get enchantment level (default 1; else the current max level + 1)
-            System.out.println("Enchantment name: " + enchantmentName);
+//            System.out.println("Enchantment name: " + enchantmentName);
 
             try {
                 // get just the enchantment name
@@ -418,7 +422,7 @@ public abstract class SkillCommands implements TabExecutor {
                     currentXP = skillRS.getInt(1);
                     availablePoints = skillRS.getInt(2);
                 }
-                System.out.printf("xp: %d, availablepoints: %d\n", currentXP, availablePoints);
+//                System.out.printf("xp: %d, availablepoints: %d\n", currentXP, availablePoints);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -456,7 +460,7 @@ public abstract class SkillCommands implements TabExecutor {
             if (skillExp != null) {
                 double currentLevel = skillExp.getCurrentSkillLevel(currentXP);
 
-                System.out.println("currentlevel: " + currentLevel);
+//                System.out.println("currentlevel: " + currentLevel);
 
                 // if our skill level exceeds the minimum level, and our available skill points exceeds the required amount,
                 // then list it as an option (enchantment + enchantment level)

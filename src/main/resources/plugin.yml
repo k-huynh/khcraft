@@ -1,48 +1,48 @@
 name: Khcraft
 version: ${project.version}
 main: org.kh.khcraft.Khcraft
-version: 1.0
 api-version: 1.16
 commands:
   mining:
-    description: Test
-    usage: /mining <etc>
+    description: Used to select/upgrade/disable mining related enchantments
+    usage: Incorrect syntax! /mining <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   digging:
-    description: todo
-    usage: todo
+    description: Used to select/upgrade/disable digging related enchantments
+    usage: Incorrect syntax! /digging <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   chopping:
-    description: todo
-    usage: todo
+    description: Used to select/upgrade/disable chopping related enchantments
+    usage: Incorrect syntax! /chopping <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   farming:
-    description: todo
-    usage: todo
+    description: Used to select/upgrade/disable farming related enchantments
+    usage: Incorrect syntax! /farming <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   fishing:
-    description: todo
-    usage: todo
+    description: Used to select/upgrade/disable fishing related enchantments
+    usage: Incorrect syntax! /fishing <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   combat:
-    description: todo
-    usage: todo
+    description: Used to select/upgrade/disable combat related enchantments
+    usage: Incorrect syntax! /combat <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   archery:
-    description: todo
-    usage: todo
+    description: Used to select/upgrade/disable archery related enchantments
+    usage: Incorrect syntax! /archery <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   trident:
-    description: todo
-    usage: todo
+    description: Used to select/upgrade/disable trident related enchantments
+    usage: Incorrect syntax! /trident <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   general:
-    description: todo
-    usage: todo
+    description: Used to select/upgrade/disable general enchantments
+    usage: Incorrect syntax! /general <select/upgrade/disable> <tool name> <enchantment name (if upgrade/select)> <level (if select)>
   skills:
-    description: todo
-    usage: todo
+    description: Displays all skill levels, experience, and available points
+    usage: Just type /skills
   trade:
-    description: todo
-    usage: todo
+    description: User to trade KenBucks with other players
+    usage: Incorrect syntax! /trade <player name> <amount> <message (optional)>
   balance:
-    description: todo
-    usage: todo
+    aliases: [kb]
+    description: Displays a player's balance
+    usage: Type /balance to display your own, or /balance <player name> to see another person's balance
   shop:
-    description: todo
-    usage: todo
+    description: Lists the items available for purchase on the server store
+    usage: Just type /shop
   buy:
-    description: todo
-    usage: todo
+    description: Used to purchase items from the server store
+    usage: Incorrect syntax! /buy <item name>
