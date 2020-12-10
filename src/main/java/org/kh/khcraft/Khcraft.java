@@ -90,7 +90,7 @@ public final class Khcraft extends JavaPlugin {
         int minute = Calendar.getInstance().get(Calendar.MINUTE);
         int second = Calendar.getInstance().get(Calendar.SECOND);
 
-        System.out.printf("Current time: %d; %d:%d:%d \n", now, hour, minute, second);
+        System.out.printf("Current time: %d; %2d:%2d:%2d \n", now, hour, minute, second);
 
         // get desired time of day for event
         Calendar scheduledCal = Calendar.getInstance();
@@ -99,7 +99,7 @@ public final class Khcraft extends JavaPlugin {
         scheduledCal.set(Calendar.SECOND, config.getInt("economy.dailyRewardTime.second"));
         scheduledCal.set(Calendar.MILLISECOND, config.getInt("economy.dailyRewardTime.millisecond"));
 
-        System.out.printf("Reward time: %d:%d:%d\n",
+        System.out.printf("Reward time: %2d:%2d:%2d\n",
                 config.getInt("economy.dailyRewardTime.hour"),
                 config.getInt("economy.dailyRewardTime.minute"),
                 config.getInt("economy.dailyRewardTime.second"));

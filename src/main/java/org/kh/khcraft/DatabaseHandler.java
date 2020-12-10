@@ -94,10 +94,17 @@ public class DatabaseHandler {
                     + "FOREIGN KEY (ToUsername) REFERENCES Users(Username),"
                     + "PRIMARY KEY (TransactionID));";
 
+            String advancementHistoryQuery = "CREATE TABLE IF NOT EXISTS AdvancementHistory("
+                    + "Username VARCHAR(45) NOT NULL,"
+                    + "AdvancementName VARCHAR(100) NOT NULL,"
+                    + "Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+                    + "FOREIGN KEY (Username) REFERENCES Users(Username));";
+
             plugin.stmt.executeUpdate(userQuery);
             plugin.stmt.executeUpdate(userSkillsQuery);
             plugin.stmt.executeUpdate(userEnchantsQuery);
             plugin.stmt.executeUpdate(KBLogQuery);
+            plugin.stmt.executeUpdate(advancementHistoryQuery);
 
         } catch (SQLException e) {
             e.printStackTrace();

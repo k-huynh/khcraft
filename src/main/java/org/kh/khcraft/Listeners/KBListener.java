@@ -1,5 +1,6 @@
 package org.kh.khcraft.Listeners;
 
+import org.bukkit.advancement.Advancement;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,6 +13,7 @@ import org.kh.khcraft.Khcraft;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 public class KBListener implements Listener {
     Khcraft plugin;
@@ -28,21 +30,38 @@ public class KBListener implements Listener {
         Player player = event.getPlayer();
         String playerName = player.getName();
 
-        // award player with KB
-        int reward = config.getInt("economy.achievementReward");
+        Advancement advancement = event.getAdvancement();
+        String advancementName = advancement.getKey().toString();
 
-        try {
-            plugin.stmt.executeUpdate(String.format("UPDATE Users SET KB = KB + %d WHERE Username = '%s';", reward, playerName));
-            System.out.printf("%s has been rewarded %d for getting an advancement!\n", playerName, reward);
-            player.sendMessage(String.format("Congratulations! You have been awarded %d for completing an advancement.", reward));
+        // make sure the advancement is not a recipe advancement lol
+        if (!advancementName.contains("recipes")) {
+            // check if the player has completed this advancement before
+            try {
+                ResultSet advancementRS = plugin.stmt.executeQuery(String.format("SELECT * FROM AdvancementHistory WHERE Username = '%s' AND AdvancementName = '%s';",
+                        playerName, advancementName));
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+                // if it exists then they've gotten this achievement before
+                if (!advancementRS.next()) {
+                    // award player with KB
+                    int reward = config.getInt("economy.achievementReward");
+
+                    plugin.stmt.executeUpdate(String.format("UPDATE Users SET KB = KB + %d WHERE Username = '%s';", reward, playerName));
+                    System.out.printf("%s has been rewarded %d for getting an advancement!\n", playerName, reward);
+                    player.sendMessage(String.format("Congratulations! You have been awarded %d for completing an advancement.", reward));
+
+                    // add to advancement history
+                    plugin.stmt.executeUpdate(String.format("INSERT INTO AdvancementHistory (Username, AdvancementName) VALUES ('%s', '%s');",
+                            playerName, advancementName));
+
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
-    // give players 500 KB daily
+    // give players KB daily on login
     @EventHandler
     public void onPlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
