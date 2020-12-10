@@ -28,10 +28,12 @@ import java.util.Map;
 public class EnchantmentListener implements Listener {
     Khcraft plugin;
     FileConfiguration config;
+    List<String> enchantableTools;
 
     public EnchantmentListener(Khcraft instance) {
         plugin = instance;
         config = plugin.getConfig();
+        enchantableTools = getEnchantableToolsList();
     }
 
     // set enchantments when player joins
@@ -108,7 +110,7 @@ public class EnchantmentListener implements Listener {
 //                System.out.printf("Considering %s (%s)\n", sanitisedToolName, toolName);
 
                 // check if it's a tool
-                if (getEnchantableToolsList().contains(sanitisedToolName)) {
+                if (enchantableTools.contains(sanitisedToolName)) {
 //                    System.out.printf("%s is a tool! removing enchantments\n", sanitisedToolName);
                     // remove enchants
                     removeAllEnchantmentsFromItem(inventoryContents[i]);

@@ -30,20 +30,6 @@ public class HoverListener implements Listener {
         config = plugin.getConfig();
     }
 
-    // need to make sure that you can't "interact" with this item (since i'm using spawn eggs)
-    @EventHandler
-    public void onPlayerInteractEvent (PlayerInteractEvent event) {
-        // get list of base items from config
-        List<String> baseItems = config.getStringList("items.vanillaBase");
-
-        if (event.getItem() != null) {
-            if (baseItems.contains(event.getItem().getType().toString())) {
-                event.setCancelled(true);
-            }
-        }
-
-    }
-
     @EventHandler
     public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) throws IOException {
         ItemStack offItem = event.getOffHandItem();
@@ -55,29 +41,6 @@ public class HoverListener implements Listener {
 //                System.out.printf("Offhand %s; false\n", offItem.getType());
                 setHover(event.getPlayer(), false);
             }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerInventoryClickEvent(InventoryClickEvent event) throws IOException {
-        // check what's in offhand
-        HumanEntity humanPlayer = event.getWhoClicked();
-        PlayerInventory playerInventory = humanPlayer.getInventory();
-
-        if (humanPlayer instanceof Player){
-            Player player = (Player)humanPlayer;
-            ItemStack offItem = playerInventory.getItemInOffHand();
-
-            if (offItem != null) {
-                if (checkOffHand(offItem) && elytraEquipped(player)) {
-//                    System.out.printf("Invent click; offhand %s; true\n", offItem.getType());
-                    setHover(player, true);
-                } else {
-//                    System.out.printf("invent click; offhand: %s; false\n", offItem.getType());
-                    setHover(player, false);
-                }
-            }
-
         }
     }
 

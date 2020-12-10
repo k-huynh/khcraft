@@ -46,8 +46,8 @@ public class KBListener implements Listener {
                     int reward = config.getInt("economy.achievementReward");
 
                     plugin.stmt.executeUpdate(String.format("UPDATE Users SET KB = KB + %d WHERE Username = '%s';", reward, playerName));
-                    System.out.printf("%s has been rewarded %d for getting an advancement!\n", playerName, reward);
-                    player.sendMessage(String.format("Congratulations! You have been awarded %d for completing an advancement.", reward));
+                    System.out.printf("%s has been rewarded %d KB for getting an advancement!\n", playerName, reward);
+                    player.sendMessage(String.format("Congratulations! You have been awarded %d KB for completing an advancement.", reward));
 
                     // add to advancement history
                     plugin.stmt.executeUpdate(String.format("INSERT INTO AdvancementHistory (Username, AdvancementName) VALUES ('%s', '%s');",

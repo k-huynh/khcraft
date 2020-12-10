@@ -2,19 +2,14 @@
 KHCraft is a papermc plugin used by JJJ to change the progression system of vanilla Minecraft. Don't judge the name plz I couldn't come up with a better one 🙂
 
 # Status
-### Broken 💔 maybe 95% done? 
+### Working (enough)! 💔 maybe 99% done? 
 <br>
 
 ## Still to-do (in no particular order)
-- change loot tables
-- custom achievements
 - test everything properly lol
-- integrate with tablist and server plugin from last time
-- make EnchantmentListener less computationally intensive -- i.e. dont check every item every time
-- disable AFK
+- make EnchantmentListener and HoverListener less computationally intensive -- i.e. dont check every item every time
 
 ## Doing
-- daily KB bonus
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
@@ -49,6 +44,9 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - repair costs for elytra is now capped at 25 (can change in config)
 - right clicking enchanting table does not bring up gui
 - fixed issue where hover wouldn't register if equipping elytra by rightclicking from hotbar (with hover item already in offhand)
+- daily KB bonus
+- integrate with tablist and server plugin from last time
+- disable AFK -- use /setidletimeout {minutes}
 
 ## Completed
 - getting exp from mining
@@ -83,6 +81,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - add more meaningful console logs while also removing unnecessary print statements
 - cap repair costs for elytra in anvil
 - disable enchanting table
+- daily KB bonus
+- KB rewards on advancements
 
 ## Future tasks if I can be bothered
 - GUI for 'server store'
@@ -95,6 +95,8 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - additional commands for economy, i.e.
     - /givekb @to amount 'msg' (server operator only)
 - rename enchantments nicely for upgrade/select without breaking everything
+- custom achievements
+- add multiworld support (might be difficult though)
 
 <br>
 
@@ -107,3 +109,6 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - realistically i should be creating wrapper classes for stuff like enchantments and custom items but im lazy :) maybe one day i'll do it
 - note: the anvil repair cap will apply to any anvil transaction; i didnt think this would be much of an issue though since you cant enchant equipment with books anyways since they'll disappear when you close the inventory screen
 - note: the anvil repair cap technically will reach a limit at some stage (after 32 repairs I believe) -- is this a problem? I do have alternative solutions in mind if it is
+- note: the custom items are technically iron nuggets and can be used in recipes -- let me know if this is a problem and if i should disable it
+- note: not changing loot tables since a) its unnecessary, and b) it gives us collector items :) lmk if you want me to change it though
+- note: some advancements may double award you because apparently there are 'hidden' advancements like recipe unlocks associated with getting advancements. I've tried to deal with these but idk if I've missed anything beyond recipe advancements
