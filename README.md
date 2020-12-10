@@ -9,11 +9,12 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - change loot tables
 - custom achievements
 - test everything properly lol
-- daily KB bonus
 - integrate with tablist and server plugin from last time
+- make EnchantmentListener less computationally intensive -- i.e. dont check every item every time
+- disable AFK
 
 ## Doing
-- make EnchantmentListener less computationally intensive -- i.e. dont check every item every time
+- daily KB bonus
 
 ## Tested as working
 - allow creative flight when holding item in off-hand
@@ -47,6 +48,7 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - can now only hover when custom item is in off hand (not with any item, nor with the same type as the base item)
 - repair costs for elytra is now capped at 25 (can change in config)
 - right clicking enchanting table does not bring up gui
+- fixed issue where hover wouldn't register if equipping elytra by rightclicking from hotbar (with hover item already in offhand)
 
 ## Completed
 - getting exp from mining
@@ -105,4 +107,3 @@ KHCraft is a papermc plugin used by JJJ to change the progression system of vani
 - realistically i should be creating wrapper classes for stuff like enchantments and custom items but im lazy :) maybe one day i'll do it
 - note: the anvil repair cap will apply to any anvil transaction; i didnt think this would be much of an issue though since you cant enchant equipment with books anyways since they'll disappear when you close the inventory screen
 - note: the anvil repair cap technically will reach a limit at some stage (after 32 repairs I believe) -- is this a problem? I do have alternative solutions in mind if it is
-- note: since we now have the requirement of an elytra being equipped for hover item to work, it won't check if you're allowed to fly (yet) if you put the hover item in your off hand, then equip your elytra by right clicking on the item when its in your hotbar -- i can fix this but just a note for now since i dont think its gamebreaking

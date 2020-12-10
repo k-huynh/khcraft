@@ -940,6 +940,17 @@ public class ConfigGenerator {
         // anvil repair costs
         config.addDefault("skills.repairs.maxCost", 25);
 
+        // economy
+        System.out.printf("Adding economy related fields\n");
+        config.addDefault("economy.achievementReward", 50);
+        config.addDefault("economy.dailyReward", 500);
+        // 7am
+        config.addDefault("economy.dailyRewardTime.hour", 7);
+        config.addDefault("economy.dailyRewardTime.minute", 0);
+        config.addDefault("economy.dailyRewardTime.second", 0);
+        config.addDefault("economy.dailyRewardTime.millisecond", 0);
+
+
         // custom items
         // list of custom item names
         System.out.printf("Adding custom item related fields\n");

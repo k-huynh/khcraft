@@ -4,6 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class DatabaseHandler {
     Khcraft plugin;
@@ -57,6 +58,7 @@ public class DatabaseHandler {
             String userQuery = "CREATE TABLE IF NOT EXISTS Users("
                     + "Username VARCHAR(45) NOT NULL,"
                     + "KB DOUBLE DEFAULT 0,"
+                    + "Daily INT DEFAULT 0,"
                     + "PRIMARY KEY (Username));";
 
             String userSkillsQuery = "CREATE TABLE IF NOT EXISTS UserSkills("

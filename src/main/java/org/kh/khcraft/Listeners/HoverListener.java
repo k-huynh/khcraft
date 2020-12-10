@@ -1,5 +1,6 @@
 package org.kh.khcraft.Listeners;
 
+import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -116,6 +117,23 @@ public class HoverListener implements Listener {
                 setHover(player, true);
             } else {
 //                System.out.printf("player join; offhand: %s; false\n", offItem.getType());
+                setHover(player, false);
+            }
+        }
+    }
+
+    // need to check if they are still 'eligible' for hovering if they change their armour
+    @EventHandler
+    public void onArmourChangeEvent(PlayerArmorChangeEvent event) {
+        Player player = event.getPlayer();
+        PlayerInventory playerInventory = player.getInventory();
+
+        ItemStack offItem = playerInventory.getItemInOffHand();
+
+        if (offItem != null) {
+            if (checkOffHand(offItem) && elytraEquipped(player)) {
+                setHover(player, true);
+            } else {
                 setHover(player, false);
             }
         }
